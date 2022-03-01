@@ -2,16 +2,23 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://lee-abcde.github.io/about/index.html</loc>
+    <loc>https://lee-abcde.github.io/contact/index.html</loc>
     
-    <lastmod>2022-03-01T03:34:11.153Z</lastmod>
+    <lastmod>2022-03-01T06:37:16.667Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://lee-abcde.github.io/friends/index.html</loc>
     
-    <lastmod>2022-03-01T01:38:16.195Z</lastmod>
+    <lastmod>2022-03-01T06:33:11.815Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://lee-abcde.github.io/about/index.html</loc>
+    
+    <lastmod>2022-03-01T03:34:11.153Z</lastmod>
     
   </url>
   
@@ -24,13 +31,6 @@
   
   <url>
     <loc>https://lee-abcde.github.io/categories/index.html</loc>
-    
-    <lastmod>2022-03-01T01:38:16.194Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://lee-abcde.github.io/contact/index.html</loc>
     
     <lastmod>2022-03-01T01:38:16.194Z</lastmod>
     
