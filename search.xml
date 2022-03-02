@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>Markdown入门学习笔记</title>
+      <link href="/2022/03/02/article-title/"/>
+      <url>/2022/03/02/article-title/</url>
+      
+        <content type="html"><![CDATA[<h1 id="Markdown学习入门笔记"><a href="#Markdown学习入门笔记" class="headerlink" title="Markdown学习入门笔记"></a>Markdown学习入门笔记</h1><blockquote><h2 id="标题"><a href="#标题" class="headerlink" title="标题"></a><strong>标题</strong></h2><pre><code>n号标题：在文字加前n个#号</code></pre><h2 id="段落"><a href="#段落" class="headerlink" title="段落"></a><strong>段落</strong></h2><pre><code>空格：使用两个以上空格加上回车</code></pre><h2 id="文字"><a href="#文字" class="headerlink" title="文字"></a><strong>文字</strong></h2><pre><code>*斜体文本***粗体文本*****粗斜体文本***</code></pre><h2 id="线段"><a href="#线段" class="headerlink" title="线段"></a><strong>线段</strong></h2><pre><code>分隔线：***删除线：~~文字两端~~下划线：&lt;u&gt;带下划线文本&lt;/u&gt;脚注：[^要注明的文本]</code></pre><h2 id="列表"><a href="#列表" class="headerlink" title="列表"></a><strong>列表</strong></h2><pre><code>无序列表：* 文字有序列表：1. 文字列表嵌套：对子列表前面使用Tab建</code></pre><h2 id="区块"><a href="#区块" class="headerlink" title="区块"></a><strong>区块</strong></h2><pre><code>区块：&gt; 文字区块嵌套： 在之前一&gt;的基础上，&gt; &gt; 文字</code></pre><h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a><strong>代码</strong></h2><pre><code>文字内代码：&#39;code&#39;代码区块：```         code         ```</code></pre><h2 id="链接"><a href="#链接" class="headerlink" title="链接"></a><strong>链接</strong></h2><pre><code>[链接名称](链接地址)&lt;链接地址&gt; eg: &lt;https://www.google.com&gt;</code></pre><h2 id="图片"><a href="#图片" class="headerlink" title="图片"></a><strong>图片</strong></h2><pre><code>![Alt text](图片链接 &quot;optional title&quot;)Alt text：图片的Alt标签，用来描述图片的关键词，可以不写。最初的本意是当图片因为某种原因不能被显示时而出现的替代文字，后来又被用于SEO，可以方便搜索引擎根据Alt text里面的关键词搜索到图片。图片链接：可以是图片的本地地址或者是网址。&quot;optional title&quot;：鼠标悬置于图片上会出现的标题文字，可以不写。eg:![RUNOOB 图标](http://static.runoob.com/images/runoob-logo.png)![RUNOOB 图标](http://static.runoob.com/images/runoob-logo.png &quot;RUNOOB&quot;)</code></pre><pre><code>指定图像高度宽度：&lt;img src=&quot;http://static.runoob.com/images/runoob-logo.png&quot; width=&quot;50%&quot;&gt;</code></pre><h2 id="表格"><a href="#表格" class="headerlink" title="表格"></a><strong>表格</strong></h2><pre><code>|  表头   | 表头  ||  ----  | ----  || 单元格  | 单元格 || 单元格  | 单元格 |</code></pre><pre><code>| 左对齐 | 右对齐 | 居中对齐 || :-----| ----: | :----: || 单元格 | 单元格 | 单元格 || 单元格 | 单元格 | 单元格 |</code></pre><p><img src="//lee-abcde.github.io/2022/03/02/article-title/wlop-23se.jpg" alt></p></blockquote>]]></content>
+      
+      
+      <categories>
+          
+          <category> 前端 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Markdown </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>建站纪念</title>
       <link href="/2022/03/01/5w2h-godweiyang/"/>
       <url>/2022/03/01/5w2h-godweiyang/</url>
