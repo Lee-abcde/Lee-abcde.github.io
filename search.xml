@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>C++ Primer Chapter 3~4</title>
+      <link href="/2022/03/04/cpp-primer-2/"/>
+      <url>/2022/03/04/cpp-primer-2/</url>
+      
+        <content type="html"><![CDATA[<h1 id="C-Primer-Chapter-3-4"><a href="#C-Primer-Chapter-3-4" class="headerlink" title="C++ Primer Chapter 3~4"></a>C++ Primer Chapter 3~4</h1><blockquote><h3 id="Chapter-3——字符串、向量和数组"><a href="#Chapter-3——字符串、向量和数组" class="headerlink" title="Chapter 3——字符串、向量和数组"></a>Chapter 3——字符串、向量和数组</h3></blockquote>]]></content>
+      
+      
+      <categories>
+          
+          <category> C++ </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> C++ </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>C++ Primer Chapter 1~2</title>
       <link href="/2022/03/02/cpp-primer/"/>
       <url>/2022/03/02/cpp-primer/</url>
@@ -11,6 +36,18 @@
         <content type="html"><![CDATA[<h1 id="C-Primer-Chapter-1-2"><a href="#C-Primer-Chapter-1-2" class="headerlink" title="C++ Primer Chapter 1~2"></a>C++ Primer Chapter 1~2</h1><blockquote><h3 id="Chapter-1——开始"><a href="#Chapter-1——开始" class="headerlink" title="Chapter 1——开始"></a>Chapter 1——开始</h3></blockquote><ul><li><p>for循环：初始化之后会检查边界条件再确定是否会进入循环</p></li><li><p>Window系统输入文件结束符：Ctrl+Z 然后 Enter/Return</p></li></ul><blockquote><h3 id="Chapter-2——变量和基本类型"><a href="#Chapter-2——变量和基本类型" class="headerlink" title="Chapter 2——变量和基本类型"></a>Chapter 2——变量和基本类型</h3></blockquote><ul><li><p>把算数值赋值给bool的时候，只有0才算false，正负数都是true</p></li><li><p>区分变量的声明和定义（用于分离式编译）</p><pre class="line-numbers language-cpp"><code class="language-cpp"><span class="token keyword">extern</span> <span class="token keyword">int</span> i<span class="token punctuation">;</span><span class="token comment" spellcheck="true">//声明</span><span class="token keyword">extern</span> <span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">99</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//定义</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></li><li><p>变量声明规范: 变量小写，类名首字母大写</p></li><li><p>引用：相当于给已有对象起了别名，必须被某一个对象初始化。（&amp; 有时候代表取地址符，而不是表示引用，要区分）</p><pre class="line-numbers language-cpp"><code class="language-cpp"><span class="token keyword">int</span> val<span class="token operator">=</span><span class="token number">1024</span><span class="token punctuation">;</span><span class="token keyword">int</span> <span class="token operator">&amp;</span>reval<span class="token operator">=</span>val<span class="token punctuation">;</span><span class="token comment" spellcheck="true">//初始化引用，初始化的&amp;只表示这个变量是引用变量，只是声明的一部分，没有其他含义。</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></li><li><p>指针：存放某个变量的地址，本身相当于一个对象。（引用不是对象没有实际地址，故不能定义指向引用的指针。</p><pre class="line-numbers language-cpp"><code class="language-cpp"><span class="token keyword">int</span> val<span class="token operator">=</span><span class="token number">1024</span><span class="token punctuation">;</span><span class="token keyword">int</span> <span class="token operator">*</span>reval<span class="token operator">=</span><span class="token operator">&amp;</span>val<span class="token punctuation">;</span><span class="token comment" spellcheck="true">//初始化指针，初始化的*只表示这个变量是指针变量，只是声明的一部分，没有解引用的含义。</span><span class="token comment" spellcheck="true">//右边的&amp;表示取地址</span>cout<span class="token operator">&lt;&lt;</span><span class="token operator">*</span>reval<span class="token operator">&lt;&lt;</span>endl<span class="token punctuation">;</span><span class="token comment" spellcheck="true">//使用解引用符号*访问指针所指向的变量内容 </span><span class="token keyword">int</span> <span class="token operator">*</span>p1<span class="token operator">=</span><span class="token keyword">nullptr</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//初始化空指针，尽量避免使用NULL</span><span class="token keyword">void</span> <span class="token operator">*</span>p2<span class="token operator">=</span><span class="token operator">&amp;</span>val<span class="token punctuation">;</span><span class="token comment" spellcheck="true">// void指针，可以指向任何类型的变量，但不能对地址上的内容进行操作</span><span class="token keyword">int</span><span class="token operator">*</span> k1<span class="token punctuation">,</span>k2<span class="token punctuation">;</span><span class="token comment" spellcheck="true">//只有k1是指针，k2是int变量，建议*和变量名写在一起</span><span class="token keyword">int</span> <span class="token operator">*</span>p<span class="token punctuation">;</span><span class="token keyword">int</span> <span class="token operator">*</span><span class="token operator">&amp;</span>r<span class="token operator">=</span>p<span class="token punctuation">;</span><span class="token comment" spellcheck="true">//指向指针的引用，从右向左看容易理解变量的含义</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li><li><p>decltype类型指示符</p><pre class="line-numbers language-cpp"><code class="language-cpp"><span class="token keyword">const</span> <span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span><span class="token keyword">decltype</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span> x<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">// decltype(i)==const int</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></li><li><p>预处理指令——头文件保护符</p><pre class="line-numbers language-cpp"><code class="language-cpp"><span class="token macro property">#<span class="token directive keyword">define</span> </span><span class="token comment" spellcheck="true">//把一个名字设成预处理变量</span><span class="token macro property">#<span class="token directive keyword">ifdef</span>(变量已定义时为真) / #<span class="token directive keyword">ifndef</span>（变量未定义时为真）</span><span class="token comment" spellcheck="true">//如果判断条件为真，就执行至#endif</span><span class="token macro property">#<span class="token directive keyword">endif</span></span><span class="token macro property">#<span class="token directive keyword">elif</span></span><span class="token comment" spellcheck="true">/* 若#if, #ifdef, #ifndef或前面的#elif条件不满足，则执行#elif之后的语句，相当于C语法中的else-if*/</span><span class="token macro property">#<span class="token directive keyword">else</span> </span><span class="token comment" spellcheck="true">/* 与#if, #ifdef, #ifndef对应, 若这些条件不满足，则执行#else之后的语句，相当于C语法中的else */</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li></ul>]]></content>
       
       
+      <categories>
+          
+          <category> C++ </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> C++ </tag>
+            
+        </tags>
       
     </entry>
     
