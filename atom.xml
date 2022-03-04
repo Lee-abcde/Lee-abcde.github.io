@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://lee-abcde.github.io/"/>
-  <updated>2022-03-02T09:13:20.326Z</updated>
+  <updated>2022-03-04T03:09:10.976Z</updated>
   <id>https://lee-abcde.github.io/</id>
   
   <author>
@@ -15,6 +15,28 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>C++ Primer Chapter 1~2</title>
+    <link href="https://lee-abcde.github.io/2022/03/02/cpp-primer/"/>
+    <id>https://lee-abcde.github.io/2022/03/02/cpp-primer/</id>
+    <published>2022-03-02T10:50:42.000Z</published>
+    <updated>2022-03-04T03:09:10.976Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;C-Primer-Chapter-1-2&quot;&gt;&lt;a href=&quot;#C-Primer-Chapter-1-2&quot; class=&quot;headerlink&quot; title=&quot;C++ Primer Chapter 1~2&quot;&gt;&lt;/a&gt;C++ Primer Chapter
+        
+      
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>Markdown入门学习笔记</title>
