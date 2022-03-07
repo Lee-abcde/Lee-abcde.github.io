@@ -4,13 +4,14 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="C++ Primer Chapter 3~4, null">
+    <meta name="keywords" content="C++ Primer (2) 字符串，向量，函数(from chapter3、6), null">
     <meta name="baidu-site-verification" content="fmlEuI34ir">
     <meta name="google-site-verification" content="yCy2azpds5XSuGZvis6OuA-XIGF5GuGpYRAaGfD6o48">
     <meta name="360-site-verification" content="b7c11a830ef90fd1464ad6206bb7b6e7">
-    <meta name="description" content="C++ Primer Chapter 3~4
+    <meta name="description" content="C++ Primer (2) 字符串，向量，函数(from chapter3、6)
 Chapter 3——字符串、向量和数组
-">
+3.1 命名空间的using声明格式为using namespace::name;
+using std::cin;">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -18,7 +19,7 @@ Chapter 3——字符串、向量和数组
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>C++ Primer Chapter 3~4 | null</title>
+    <title>C++ Primer (2) 字符串，向量，函数(from chapter3、6) | null</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -318,13 +319,13 @@ Chapter 3——字符串、向量和数组
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/26.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/27.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        C++ Primer Chapter 3~4
+                        C++ Primer (2) 字符串，向量，函数(from chapter3、6)
                     </div>
                 </div>
             </div>
@@ -473,14 +474,14 @@ Chapter 3——字符串、向量和数组
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    15
+                    832
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    1 分
+                    3 分
                 </div>
                 
                 
@@ -496,8 +497,67 @@ Chapter 3——字符串、向量和数组
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="C-Primer-Chapter-3-4"><a href="#C-Primer-Chapter-3-4" class="headerlink" title="C++ Primer Chapter 3~4"></a>C++ Primer Chapter 3~4</h1><blockquote>
+                <h1 id="C-Primer-2-字符串，向量，函数-from-chapter3、6"><a href="#C-Primer-2-字符串，向量，函数-from-chapter3、6" class="headerlink" title="C++ Primer (2) 字符串，向量，函数(from chapter3、6)"></a>C++ Primer (2) 字符串，向量，函数(from chapter3、6)</h1><blockquote>
 <h3 id="Chapter-3——字符串、向量和数组"><a href="#Chapter-3——字符串、向量和数组" class="headerlink" title="Chapter 3——字符串、向量和数组"></a>Chapter 3——字符串、向量和数组</h3></blockquote>
+<h4 id="3-1-命名空间的using声明"><a href="#3-1-命名空间的using声明" class="headerlink" title="3.1 命名空间的using声明"></a>3.1 命名空间的using声明</h4><p>格式为<code>using namespace::name;</code></p>
+<pre class="line-numbers language-cpp"><code class="language-cpp"><span class="token keyword">using</span> std<span class="token operator">::</span>cin<span class="token punctuation">;</span><span class="token comment" spellcheck="true">//只调用std空间中中的cin</span>
+<span class="token keyword">using</span> <span class="token keyword">namespace</span> std<span class="token punctuation">;</span><span class="token comment" spellcheck="true">//调用std空间中的所有名字</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<h4 id="3-2-标准库string"><a href="#3-2-标准库string" class="headerlink" title="3.2 标准库string"></a>3.2 标准库string</h4><ul>
+<li><p>初始化<br><img src="//lee-abcde.github.io/2022/03/04/cpp-primer-2/String1.png" alt></p>
+</li>
+<li><p>cin读入：<code>cin&gt;&gt;s;</code>会忽略开头的空格，从第一个有效字符开始，到第一个空白结束。 </p>
+</li>
+<li><p>getline读入：<code>getline(cin,line)</code>会读入包括空格，直到读入换行符结束，但不读入换行符。<br><img src="//lee-abcde.github.io/2022/03/04/cpp-primer-2/String2.png" alt></p>
+</li>
+<li><p>String遍历</p>
+<pre class="line-numbers language-cpp"><code class="language-cpp">string s<span class="token punctuation">;</span>
+<span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">auto</span> c<span class="token operator">:</span> s<span class="token punctuation">)</span><span class="token comment" spellcheck="true">//仅仅用来遍历</span>
+<span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">auto</span> <span class="token operator">&amp;</span>c<span class="token operator">:</span> s<span class="token punctuation">)</span><span class="token comment" spellcheck="true">//遍历的同时可以改变s的值</span>
+s<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token comment" spellcheck="true">// 下标访问的关键是使用前要判断s是否为空，否则s[0]越界</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<h4 id="3-3-标准库Vector"><a href="#3-3-标准库Vector" class="headerlink" title="3.3 标准库Vector"></a>3.3 标准库Vector</h4><p>vector是<strong>模板</strong>而不是类型，需要指定数据类型，如<code>vector&lt;int&gt; v</code>。vector可以容纳大多数的对象，但是引用不是对象，所以无法容纳引用。<br><img src="//lee-abcde.github.io/2022/03/04/cpp-primer-2/Vector1.png" alt>  </p>
+<h4 id="3-4-迭代器"><a href="#3-4-迭代器" class="headerlink" title="3.4 迭代器"></a>3.4 迭代器</h4></li>
+<li><p>迭代器使用<code>auto b=v.begin(),e=v.end();</code>当v为空，begin和end返回的迭代器是相同的。注意end()返回的迭代器指向的一个不存在末尾元素，仅仅作为标记。<br><img src="//lee-abcde.github.io/2022/03/04/cpp-primer-2/Iter1.png" alt><br>注意：不能解引用<strong>尾后迭代器和非法迭代器</strong></p>
+</li>
+<li><p><code>for(auto it=v.begin(); it!=v.end(); ++it)</code><br><img src="//lee-abcde.github.io/2022/03/04/cpp-primer-2/Iter2.png" alt> </p>
+</li>
+<li><p>迭代器类型</p>
+<pre class="line-numbers language-cpp"><code class="language-cpp">vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span><span class="token operator">::</span>iterator it1<span class="token punctuation">;</span>
+string<span class="token operator">::</span>iterator it2<span class="token punctuation">;</span>
+vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span><span class="token operator">::</span>const_iterator it3<span class="token punctuation">;</span><span class="token comment" spellcheck="true">//只能读元素不能写元素</span>
+string<span class="token operator">::</span>const_iterator it4<span class="token punctuation">;</span><span class="token comment" spellcheck="true">//只能读元素不能写元素</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
+<li><p><code>-&gt;</code>运算符，把解引用和访问成员结合在一起<code>it-&gt;mem</code>和<code>(*it).mem</code>是等价的。</p>
+</li>
+<li><p><strong>限制：1.不能在范围for循环内对vector添加元素 2.使用任何改变对象容量的操作，如<code>push_back</code>，可能会导致迭代器失效</strong> (注：范围for循环形如<code>for(int val:numbers)</code>)<br><img src="//lee-abcde.github.io/2022/03/04/cpp-primer-2/Iter3.png" alt> </p>
+<blockquote>
+<h3 id="Chapter-6——函数"><a href="#Chapter-6——函数" class="headerlink" title="Chapter 6——函数"></a>Chapter 6——函数</h3><p>建议把函数声明定义在头文件中，在源文件中定义。<br>如果函数无法改变形参的值，建议把其声明为常量引用。</p>
+</blockquote>
+</li>
+<li><p>函数重载：函数名字相同但形参列表不相同（不允许两个函数只有返回值不相同，但形参列表相同；形参列表不区分顶层const，<code>int find(Phone*);</code>和<code>int find(Phone* const);</code>是相同的）</p>
+</li>
+<li><p>内联函数：将函数直接在调用点直接替换展开。是代码向编译器发出的请求，编译器可以直接忽略。</p>
+</li>
+<li><p>预处理宏：<code>assert(expr)</code>如果表达式为假则终止程序，否则什么也不做。<code>assert</code>定义在<code>cassert</code>头文件中。<br>注意：宏名字在程序内必须唯一，含有<code>cassert</code>头文件则不能使用<code>assert</code>当做变量名、函数或者实体。</p>
+</li>
+<li><p>NDEBUG预处理变量：NDEBUG宏是Standard C中定义的宏，专门用来控制assert()的行为。如果定义了这个宏，则assert不会起作用。</p>
+<pre class="line-numbers language-cpp"><code class="language-cpp"><span class="token macro property">#<span class="token directive keyword">ifdef</span> NDEBUG</span>
+<span class="token macro property">#<span class="token directive keyword">define</span> assert(x) ((void)0)</span><span class="token comment" spellcheck="true">//如果定义了NDEBUG，就禁止assert使用</span>
+<span class="token macro property">#<span class="token directive keyword">else</span></span>
+<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
+<li><p>函数指针</p>
+<pre class="line-numbers language-cpp"><code class="language-cpp"><span class="token comment" spellcheck="true">//定义</span>
+<span class="token keyword">bool</span> <span class="token function">lengthCompare</span><span class="token punctuation">(</span><span class="token keyword">const</span> string <span class="token operator">&amp;</span><span class="token punctuation">,</span><span class="token keyword">const</span> string <span class="token operator">&amp;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">bool</span> <span class="token punctuation">(</span><span class="token operator">*</span>pf<span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token keyword">const</span> string <span class="token operator">&amp;</span><span class="token punctuation">,</span><span class="token keyword">const</span> string <span class="token operator">&amp;</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//声明函数指针</span>
+<span class="token comment" spellcheck="true">//赋值</span>
+pf<span class="token operator">=</span><span class="token operator">&amp;</span>lengthCompare<span class="token punctuation">;</span>
+pf<span class="token operator">=</span>lengthCompare<span class="token punctuation">;</span><span class="token comment" spellcheck="true">//两种赋值语句都是等价的</span>
+<span class="token comment" spellcheck="true">//使用</span>
+<span class="token keyword">bool</span> b1<span class="token operator">=</span><span class="token function">pf</span><span class="token punctuation">(</span><span class="token string">"AAA"</span><span class="token punctuation">,</span><span class="token string">"NNN"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">bool</span> b2<span class="token operator">=</span><span class="token punctuation">(</span><span class="token operator">*</span>pf<span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token string">"AAA"</span><span class="token punctuation">,</span><span class="token string">"NNN"</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>注意：重载函数的函数指针需要进一步明确的定义。此外还可以定义返回函数指针的函数。</p>
+</li>
+</ul>
 
             </div>
             <hr />
@@ -532,7 +592,7 @@ Chapter 3——字符串、向量和数组
             <br/>
             <span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text"
                   property="dct:title" rel="dct:type">
-                    《C++ Primer Chapter 3~4》
+                    《C++ Primer (2) 字符串，向量，函数(from chapter3、6)》
                 </span> 由
             <a xmlns:cc="http://creativecommons.org/ns#" href="/2022/03/04/cpp-primer-2/" property="cc:attributionName"
                rel="cc:attributionURL">
@@ -867,17 +927,18 @@ Chapter 3——字符串、向量和数组
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/26.jpg" class="responsive-img" alt="C++ Primer Chapter 3~4">
+                        <img src="/medias/featureimages/27.jpg" class="responsive-img" alt="C++ Primer (2) 字符串，向量，函数(from chapter3、6)">
                         
-                        <span class="card-title">C++ Primer Chapter 3~4</span>
+                        <span class="card-title">C++ Primer (2) 字符串，向量，函数(from chapter3、6)</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            C++ Primer Chapter 3~4
+                            C++ Primer (2) 字符串，向量，函数(from chapter3、6)
 Chapter 3——字符串、向量和数组
-
+3.1 命名空间的using声明格式为using namespace::name;
+using std::cin;
                         
                     </div>
                     <div class="publish-info">
@@ -919,24 +980,20 @@ Chapter 3——字符串、向量和数组
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/7.jpg" class="responsive-img" alt="C++ Primer Chapter 1~2">
+                        <img src="/medias/featureimages/28.jpg" class="responsive-img" alt="C++ Primer (1) 变量和基本类型(from chapter1~2)">
                         
-                        <span class="card-title">C++ Primer Chapter 1~2</span>
+                        <span class="card-title">C++ Primer (1) 变量和基本类型(from chapter1~2)</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            C++ Primer Chapter 1~2
+                            C++ Primer （1）变量和基本类型(from chapter1~2)
 Chapter 1——开始
 
 for循环：初始化之后会检查边界条件再确定是否会进入循环
 
-Window系统输入文件结束符：Ctrl+Z 然后 Enter/Return
-
-
-
-Chapter 2—
+Window系统输入文件结束符：Ctrl+Z 然后 Enter/Retu
                         
                     </div>
                     <div class="publish-info">
@@ -1133,7 +1190,7 @@ Chapter 2—
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">1k</span>
+            <span class="white-color">1.9k</span>
             
 
             <br>

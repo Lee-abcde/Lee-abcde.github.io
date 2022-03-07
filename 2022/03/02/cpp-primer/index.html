@@ -4,20 +4,16 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="C++ Primer Chapter 1~2, null">
+    <meta name="keywords" content="C++ Primer (1) 变量和基本类型(from chapter1~2), null">
     <meta name="baidu-site-verification" content="fmlEuI34ir">
     <meta name="google-site-verification" content="yCy2azpds5XSuGZvis6OuA-XIGF5GuGpYRAaGfD6o48">
     <meta name="360-site-verification" content="b7c11a830ef90fd1464ad6206bb7b6e7">
-    <meta name="description" content="C++ Primer Chapter 1~2
+    <meta name="description" content="C++ Primer （1）变量和基本类型(from chapter1~2)
 Chapter 1——开始
 
 for循环：初始化之后会检查边界条件再确定是否会进入循环
 
-Window系统输入文件结束符：Ctrl+Z 然后 Enter/Return
-
-
-
-Chapter 2—">
+Window系统输入文件结束符：Ctrl+Z 然后 Enter/Retu">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -25,7 +21,7 @@ Chapter 2—">
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>C++ Primer Chapter 1~2 | null</title>
+    <title>C++ Primer (1) 变量和基本类型(from chapter1~2) | null</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -325,13 +321,13 @@ Chapter 2—">
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/7.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/28.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        C++ Primer Chapter 1~2
+                        C++ Primer (1) 变量和基本类型(from chapter1~2)
                     </div>
                 </div>
             </div>
@@ -480,7 +476,7 @@ Chapter 2—">
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    574
+                    635
                 </div>
                 
 
@@ -503,7 +499,7 @@ Chapter 2—">
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="C-Primer-Chapter-1-2"><a href="#C-Primer-Chapter-1-2" class="headerlink" title="C++ Primer Chapter 1~2"></a>C++ Primer Chapter 1~2</h1><blockquote>
+                <h1 id="C-Primer-（1）变量和基本类型-from-chapter1-2"><a href="#C-Primer-（1）变量和基本类型-from-chapter1-2" class="headerlink" title="C++ Primer （1）变量和基本类型(from chapter1~2)"></a>C++ Primer （1）变量和基本类型(from chapter1~2)</h1><blockquote>
 <h3 id="Chapter-1——开始"><a href="#Chapter-1——开始" class="headerlink" title="Chapter 1——开始"></a>Chapter 1——开始</h3></blockquote>
 <ul>
 <li><p>for循环：初始化之后会检查边界条件再确定是否会进入循环</p>
@@ -536,6 +532,13 @@ cout<span class="token operator">&lt;&lt;</span><span class="token operator">*</
 <span class="token keyword">int</span><span class="token operator">*</span> k1<span class="token punctuation">,</span>k2<span class="token punctuation">;</span><span class="token comment" spellcheck="true">//只有k1是指针，k2是int变量，建议*和变量名写在一起</span>
 <span class="token keyword">int</span> <span class="token operator">*</span>p<span class="token punctuation">;</span>
 <span class="token keyword">int</span> <span class="token operator">*</span><span class="token operator">&amp;</span>r<span class="token operator">=</span>p<span class="token punctuation">;</span><span class="token comment" spellcheck="true">//指向指针的引用，从右向左看容易理解变量的含义</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
+<li><p>const和指针<br>顶层const：表示指针本身是个常量</p>
+<pre class="line-numbers language-cpp"><code class="language-cpp"><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token keyword">int</span> <span class="token operator">*</span><span class="token keyword">const</span> p1<span class="token operator">=</span><span class="token operator">&amp;</span>i<span class="token punctuation">;</span><span class="token comment" spellcheck="true">//顶层const</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p>底层const：指针指向的对象是个常量</p>
+<pre class="line-numbers language-cpp"><code class="language-cpp"><span class="token keyword">const</span> <span class="token keyword">int</span> x<span class="token operator">=</span><span class="token number">42</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> <span class="token keyword">int</span> <span class="token operator">*</span>p2<span class="token operator">=</span><span class="token operator">&amp;</span>x<span class="token punctuation">;</span><span class="token comment" spellcheck="true">//底层const</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 </li>
 <li><p>decltype类型指示符</p>
 <pre class="line-numbers language-cpp"><code class="language-cpp"><span class="token keyword">const</span> <span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>
@@ -586,7 +589,7 @@ cout<span class="token operator">&lt;&lt;</span><span class="token operator">*</
             <br/>
             <span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text"
                   property="dct:title" rel="dct:type">
-                    《C++ Primer Chapter 1~2》
+                    《C++ Primer (1) 变量和基本类型(from chapter1~2)》
                 </span> 由
             <a xmlns:cc="http://creativecommons.org/ns#" href="/2022/03/02/cpp-primer/" property="cc:attributionName"
                rel="cc:attributionURL">
@@ -920,17 +923,18 @@ cout<span class="token operator">&lt;&lt;</span><span class="token operator">*</
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/26.jpg" class="responsive-img" alt="C++ Primer Chapter 3~4">
+                        <img src="/medias/featureimages/27.jpg" class="responsive-img" alt="C++ Primer (2) 字符串，向量，函数(from chapter3、6)">
                         
-                        <span class="card-title">C++ Primer Chapter 3~4</span>
+                        <span class="card-title">C++ Primer (2) 字符串，向量，函数(from chapter3、6)</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            C++ Primer Chapter 3~4
+                            C++ Primer (2) 字符串，向量，函数(from chapter3、6)
 Chapter 3——字符串、向量和数组
-
+3.1 命名空间的using声明格式为using namespace::name;
+using std::cin;
                         
                     </div>
                     <div class="publish-info">
@@ -971,7 +975,7 @@ Chapter 3——字符串、向量和数组
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/1.jpg" class="responsive-img" alt="Markdown入门学习笔记">
+                        <img src="/medias/featureimages/26.jpg" class="responsive-img" alt="Markdown入门学习笔记">
                         
                         <span class="card-title">Markdown入门学习笔记</span>
                     </div>
@@ -1181,7 +1185,7 @@ Chapter 3——字符串、向量和数组
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">1k</span>
+            <span class="white-color">1.9k</span>
             
 
             <br>
