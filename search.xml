@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>C++ Primer (3) 类 (from chapter7)</title>
+      <link href="/2022/03/13/cpp-prime-3/"/>
+      <url>/2022/03/13/cpp-prime-3/</url>
+      
+        <content type="html"><![CDATA[<h1 id="C-Primer-3-类-from-chapter7"><a href="#C-Primer-3-类-from-chapter7" class="headerlink" title="C++ Primer (3) 类 (from chapter7)"></a>C++ Primer (3) 类 (from chapter7)</h1><blockquote><h3 id="Chapter-7-1-定义抽象数据类型"><a href="#Chapter-7-1-定义抽象数据类型" class="headerlink" title="Chapter 7.1 定义抽象数据类型"></a>Chapter 7.1 定义抽象数据类型</h3></blockquote><p><strong>（1）成员函数</strong>：定义为类一部分的函数，或称为方法。通过调用<code>this</code>这个隐式参数来访问调用成员函数的变量。可以在类外定义成员函数，但是其声明必须和类中声明保持一致。</p><p>对于<code>combine</code>函数我们可以<code>return *this</code>，返回我们返回调用该函数的类。<code>A.combine(B)</code>更新函数A的值。</p><p><strong>常量成员函数</strong>：使用<code>const</code>引导<code>this</code>是一个指向常量的指针</p><p><strong>（2）类相关的非成员函数</strong>：这些函数（如<code>print</code>，<code>read</code>）属于类的借口，但是不属于类本身。</p><p><strong>（3）构造函数</strong>：用来初始化类的对象成员。<br><img src="//lee-abcde.github.io/2022/03/13/cpp-prime-3/Class01.png" alt><br><strong>默认构造函数</strong>：类通过默认构造函数控制默认初始化过程，编译器可以合成默认构造函数（但不建议让编译器这么做）。<br><img src="//lee-abcde.github.io/2022/03/13/cpp-prime-3/Class02.png" alt><br>第一个函数是默认构造函数，可以使用<code>=default</code>进行编译器默认的赋值。第二、三个是在类内定义的默认构造函数。第四个是在类的外部定义构造函数。</p><p><strong>（4）拷贝、赋值、销毁函数</strong>：编译器可以自己合成，但是特殊情况需要自定义。（建议类中所有分配的资源以类成员变量的形式存储）</p><blockquote><h3 id="Chapter-7-2-访问控制和封装"><a href="#Chapter-7-2-访问控制和封装" class="headerlink" title="Chapter 7.2 访问控制和封装"></a>Chapter 7.2 访问控制和封装</h3></blockquote><p><strong>访问说明符</strong><br><img src="//lee-abcde.github.io/2022/03/13/cpp-prime-3/Class03.png" alt><br><code>class</code>和<code>struct</code>的区别是默认的访问访问权限，<code>class</code>默认权限是<code>private</code>,<code>struct</code>默认权限是<code>public</code>。默认权限是定义在<code>private</code>和<code>public</code>之外的成员变量。</p><p><strong>友元</strong>：允许其他类或者函数访问类的私有变量，在定义之前要加上<code>friend</code>表示为有元。<br><img src="//lee-abcde.github.io/2022/03/13/cpp-prime-3/Class04.png" alt><br>但有的编译器不强制有元函数使用之前的外部声明。</p><blockquote><h3 id="Chapter-7-5-构造函数"><a href="#Chapter-7-5-构造函数" class="headerlink" title="Chapter 7.5 构造函数"></a>Chapter 7.5 构造函数</h3></blockquote><p><img src="//lee-abcde.github.io/2022/03/13/cpp-prime-3/Class05.png" alt><br><img src="//lee-abcde.github.io/2022/03/13/cpp-prime-3/Class06.png" alt><br><img src="//lee-abcde.github.io/2022/03/13/cpp-prime-3/Class07.png" alt><br><code>Sales_data(std::string s=&quot;&quot;):bookNo(s){ }</code>默认传入的是默认实参，但也可以传入其他string赋值。</p><p><strong>委托构造函数</strong>：类中的A构造函数可以调用B、C构造函数完成初始化过程。<br><img src="//lee-abcde.github.io/2022/03/13/cpp-prime-3/Class08.png" alt></p><p><strong>隐式的类类型转换</strong><br><img src="//lee-abcde.github.io/2022/03/13/cpp-prime-3/Class09.png" alt></p><p><strong>抑制构造函数的隐式类类型转换</strong><br><img src="//lee-abcde.github.io/2022/03/13/cpp-prime-3/Class10.png" alt><br><code>explicit</code>只对一个实参的构造函数起作用，多个实参的构造函数不能用于执行隐式的转换。</p><p><strong>聚合类</strong><br><img src="//lee-abcde.github.io/2022/03/13/cpp-prime-3/Class11.png" alt></p><pre class="line-numbers language-cpp"><code class="language-cpp"><span class="token keyword">struct</span> Data<span class="token punctuation">{</span>    <span class="token keyword">int</span> ival<span class="token punctuation">;</span>    string s<span class="token punctuation">;</span><span class="token punctuation">}</span><span class="token punctuation">;</span>Data val1<span class="token operator">=</span><span class="token punctuation">{</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token string">"haha"</span><span class="token punctuation">}</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//可以通过初始化显式赋值，但必须保持顺序一致</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre><blockquote><h3 id="Chapter-7-6-类的静态成员"><a href="#Chapter-7-6-类的静态成员" class="headerlink" title="Chapter 7.6 类的静态成员"></a>Chapter 7.6 类的静态成员</h3></blockquote><p><img src="//lee-abcde.github.io/2022/03/13/cpp-prime-3/Class12.png" alt><br><img src="//lee-abcde.github.io/2022/03/13/cpp-prime-3/Class13.png" alt><br><img src="//lee-abcde.github.io/2022/03/13/cpp-prime-3/Class14.png" alt></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> C++ </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> C++ </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>C++ Primer (2) 字符串，向量，函数(from chapter3、6)</title>
       <link href="/2022/03/04/cpp-primer-2/"/>
       <url>/2022/03/04/cpp-primer-2/</url>
