@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://lee-abcde.github.io/"/>
-  <updated>2022-03-13T15:47:12.060Z</updated>
+  <updated>2022-03-14T07:10:14.931Z</updated>
   <id>https://lee-abcde.github.io/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>C++ Primer (5) STL-IO库 (from chapter8)</title>
+    <link href="https://lee-abcde.github.io/2022/03/14/cpp-primer-4/"/>
+    <id>https://lee-abcde.github.io/2022/03/14/cpp-primer-4/</id>
+    <published>2022-03-14T05:59:37.000Z</published>
+    <updated>2022-03-14T07:10:14.931Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;C-Primer-5-STL-IO库-from-chapter8&quot;&gt;&lt;a href=&quot;#C-Primer-5-STL-IO库-from-chapter8&quot; class=&quot;headerlink&quot; title=&quot;C++ Primer (5) STL-IO库
+        
+      
+    
+    </summary>
+    
+      <category term="C++" scheme="https://lee-abcde.github.io/categories/C/"/>
+    
+    
+      <category term="C++" scheme="https://lee-abcde.github.io/tags/C/"/>
+    
+  </entry>
   
   <entry>
     <title>C++ Primer (3) 类 (from chapter7)</title>

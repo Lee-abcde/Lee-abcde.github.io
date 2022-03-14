@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>C++ Primer (5) STL-IO库 (from chapter8)</title>
+      <link href="/2022/03/14/cpp-primer-4/"/>
+      <url>/2022/03/14/cpp-primer-4/</url>
+      
+        <content type="html"><![CDATA[<h1 id="C-Primer-5-STL-IO库-from-chapter8"><a href="#C-Primer-5-STL-IO库-from-chapter8" class="headerlink" title="C++ Primer (5) STL-IO库 (from chapter8)"></a>C++ Primer (5) STL-IO库 (from chapter8)</h1><p><strong>入门知识</strong><br><img src="//lee-abcde.github.io/2022/03/14/cpp-primer-4/IO01.png" alt></p><blockquote><h3 id="Chapter-8-1-IO类"><a href="#Chapter-8-1-IO类" class="headerlink" title="Chapter 8.1 IO类"></a>Chapter 8.1 IO类</h3></blockquote><p><img src="//lee-abcde.github.io/2022/03/14/cpp-primer-4/IO02.png" alt><br>下面的<code>ifstream</code>和<code>istringstream</code>都是继承自<code>istream</code>，所以都可以用<code>&gt;&gt;</code>进行操作，其他同理。</p><p><em>注意：IO对象不存在拷贝与赋值操作</em></p><p><strong>条件状态</strong>：IO库给予了一系列函数可以让我们访问和操作流的状态，检查流是否崩溃，修改流的标志位等等。<strong>（目前没找到太多应用场景故不细写）</strong></p><p><strong>管理输出缓冲</strong>：OS设置缓冲区，可以将多个输出操作组合为单一的设备写操作提升性能。程序结束、缓冲区满、<code>endl</code>显式刷新缓冲区，都是把数据从缓冲区输出的原因。<br><img src="//lee-abcde.github.io/2022/03/14/cpp-primer-4/IO03.png" alt><br><em>注意：如果程序崩溃，缓冲区内的数据不会被刷新出来。</em></p><p><strong>关联输入输出流</strong>：<code>cin</code>和<code>cout</code>流被关联了，每次<code>cin</code>执行读入操作，会自动刷新<code>cout</code>的缓存区。<code>x.tie(&amp;o);</code>可以将流x关联到输出流o。</p><blockquote><h3 id="Chapter-8-2-文件输入输出"><a href="#Chapter-8-2-文件输入输出" class="headerlink" title="Chapter 8.2 文件输入输出"></a>Chapter 8.2 文件输入输出</h3></blockquote><p><img src="//lee-abcde.github.io/2022/03/14/cpp-primer-4/IO04.png" alt></p><pre class="line-numbers language-cpp"><code class="language-cpp">ifstream <span class="token function">in</span><span class="token punctuation">(</span>ifile<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//构造一个ifstream并打开给定文件，ifile可以为String类型</span>ofstream out<span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//输出文件流并未关联到任何文件</span>out<span class="token punctuation">.</span><span class="token function">open</span><span class="token punctuation">(</span>ifle<span class="token operator">+</span><span class="token string">".copy"</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//打开指定文件</span><span class="token keyword">if</span><span class="token punctuation">(</span>out<span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token comment" spellcheck="true">//检查open是否成功</span>in<span class="token punctuation">.</span><span class="token function">close</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//关闭文件</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre><p><strong>文件模式</strong>：<br><img src="//lee-abcde.github.io/2022/03/14/cpp-primer-4/IO05.png" alt><br><em>注意:以<code>out</code>模式打开文件会删除原有数据，显示指定<code>in</code>或者<code>app</code>才可以保存数据。</em></p><blockquote><h3 id="Chapter-8-3-String流"><a href="#Chapter-8-3-String流" class="headerlink" title="Chapter 8.3 String流"></a>Chapter 8.3 String流</h3></blockquote><pre class="line-numbers language-cpp"><code class="language-cpp"><span class="token comment" spellcheck="true">//假设读入“Xiaoming 1 2 3 4 5"</span><span class="token function">getline</span><span class="token punctuation">(</span>cin<span class="token punctuation">,</span>line<span class="token punctuation">)</span><span class="token punctuation">;</span>istringstream <span class="token function">record</span><span class="token punctuation">(</span>line<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//绑定读入的行之后可以多次读入来拆分行内的信息</span>record<span class="token operator">>></span>name<span class="token punctuation">;</span><span class="token comment" spellcheck="true">//读入名字</span><span class="token keyword">while</span><span class="token punctuation">(</span>record<span class="token operator">>></span>num<span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> C++ </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> C++ </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>C++ Primer (3) 类 (from chapter7)</title>
       <link href="/2022/03/13/cpp-prime-3/"/>
       <url>/2022/03/13/cpp-prime-3/</url>
