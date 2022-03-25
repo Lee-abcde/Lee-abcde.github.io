@@ -4,11 +4,15 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="建站纪念, null">
+    <meta name="keywords" content="C++ Primer (5) 顺序容器 (from chapter9), null">
     <meta name="baidu-site-verification" content="fmlEuI34ir">
     <meta name="google-site-verification" content="yCy2azpds5XSuGZvis6OuA-XIGF5GuGpYRAaGfD6o48">
     <meta name="360-site-verification" content="b7c11a830ef90fd1464ad6206bb7b6e7">
-    <meta name="description" content="建站纪念 | null">
+    <meta name="description" content="C++ Primer (5) 顺序容器 (from chapter9)
+9.1 顺序容器概览
+注意：一般情况建议尽量使用Vector
+
+9.2 容器库概览下面的操作对于所有容器都使用（包括关联容器和无序容器）容器定义和初始化注：将一个容器初">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -16,7 +20,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>建站纪念 | null</title>
+    <title>C++ Primer (5) 顺序容器 (from chapter9) | null</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -322,7 +326,7 @@
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        建站纪念
+                        C++ Primer (5) 顺序容器 (from chapter9)
                     </div>
                 </div>
             </div>
@@ -433,8 +437,8 @@
                     
                     <div class="article-tag">
                         
-                        <a href="/tags/博客/" target="_blank">
-                            <span class="chip bg-color">博客</span>
+                        <a href="/tags/C/" target="_blank">
+                            <span class="chip bg-color">C++</span>
                         </a>
                         
                     </div>
@@ -445,8 +449,8 @@
                     <div class="post-cate">
                         <i class="fa fa-bookmark fa-fw icon-category"></i>
                         
-                        <a href="/categories/随笔/" class="post-category" target="_blank">
-                            随笔
+                        <a href="/categories/C/" class="post-category" target="_blank">
+                            C++
                         </a>
                         
                     </div>
@@ -457,7 +461,7 @@
             <div class="post-info">
                 <div class="post-date info-break-policy">
                     <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2022-03-01
+                    2022-03-15
                 </div>
 
                 <div class="post-author info-break-policy">
@@ -471,7 +475,7 @@
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    0
+                    207
                 </div>
                 
 
@@ -494,7 +498,15 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                
+                <h1 id="C-Primer-5-顺序容器-from-chapter9"><a href="#C-Primer-5-顺序容器-from-chapter9" class="headerlink" title="C++ Primer (5) 顺序容器 (from chapter9)"></a>C++ Primer (5) 顺序容器 (from chapter9)</h1><blockquote>
+<h3 id="9-1-顺序容器概览"><a href="#9-1-顺序容器概览" class="headerlink" title="9.1 顺序容器概览"></a>9.1 顺序容器概览</h3></blockquote>
+<p><img src="//lee-abcde.github.io/2022/03/15/cpp-primer-5/01.png" alt><br><em>注意：一般情况建议尽量使用Vector</em></p>
+<blockquote>
+<h3 id="9-2-容器库概览"><a href="#9-2-容器库概览" class="headerlink" title="9.2 容器库概览"></a>9.2 容器库概览</h3><p>下面的操作对于所有容器都使用（包括关联容器和无序容器）<br><img src="//lee-abcde.github.io/2022/03/15/cpp-primer-5/02.png" alt><br><img src="//lee-abcde.github.io/2022/03/15/cpp-primer-5/03.png" alt><br><img src="//lee-abcde.github.io/2022/03/15/cpp-primer-5/04.png" alt><br><strong>容器定义和初始化</strong><br><img src="//lee-abcde.github.io/2022/03/15/cpp-primer-5/05.png" alt><br><em>注：将一个容器初始化成另一个容器的拷贝时，容器类型必须相同，元素类型要相同或能够发生转化，如<code>char*</code>和<code>string</code></em></p>
+</blockquote>
+<p><strong>容器赋值(assign只能用于顺序容器）</strong><br><img src="//lee-abcde.github.io/2022/03/15/cpp-primer-5/06.png" alt><br><em>注：由于旧元素被替换，传递给assign的迭代器不能指向调用assign的容器（但我自己做实验其实是可以的）</em></p>
+<p><strong>swap函数</strong>：可以交换相同类型容器的内容(在本人电脑上只要元素类型相同就行，可以使用不同容器)</p>
+
             </div>
             <hr />
 
@@ -528,9 +540,9 @@
             <br/>
             <span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text"
                   property="dct:title" rel="dct:type">
-                    《建站纪念》
+                    《C++ Primer (5) 顺序容器 (from chapter9)》
                 </span> 由
-            <a xmlns:cc="http://creativecommons.org/ns#" href="/2022/03/01/5w2h-godweiyang/" property="cc:attributionName"
+            <a xmlns:cc="http://creativecommons.org/ns#" href="/2022/03/15/cpp-primer-5/" property="cc:attributionName"
                rel="cc:attributionURL">
                 Jingyuan Li
             </a> 采用
@@ -571,7 +583,7 @@
         repo: 'Lee-abcde.github.io',
         owner: 'Lee-abcde',
         admin: "Lee-abcde",
-        id: '2022/03/01/5w2h-godweiyang/',
+        id: '2022/03/15/cpp-primer-5/',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -858,36 +870,40 @@
             <div class="article-badge left-badge text-color">
                 <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2022/03/02/article-title/">
+                <a href="/2022/03/25/wangyi-interview-2022/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/1.jpg" class="responsive-img" alt="Markdown入门学习笔记">
+                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="网易互娱游戏研发暑期实习面经2022（一面技术面）">
                         
-                        <span class="card-title">Markdown入门学习笔记</span>
+                        <span class="card-title">网易互娱游戏研发暑期实习面经2022（一面技术面）</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            Markdown学习入门笔记
-标题n号标题：在文字加前n个#号段落空格：使用两个以上空格加上回车文字*斜体文本*
-**粗体文本**
-***粗斜体文本***线段分隔线：***
-删除线：~~文字两端~~
-下划线：&lt;u&gt;带下划线文本&
+                            网易互娱游戏研发暑期实习面经2022（一面技术面）
+面经推荐
+
+游戏开发面经汇总
+
+总体流程：（时长1.5h)
+
+
+自己写半小时算法题（简单难度）——给一颗二叉树，每个节点都有权重，求所有根节点到子节点的路径权重和
+ 注：没有OJ检测，没有
                         
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="fa fa-clock-o fa-fw icon-date"></i>2022-03-02
+                            <i class="fa fa-clock-o fa-fw icon-date"></i>2022-03-25
                         </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/前端/" class="post-category" target="_blank">
-                                    前端
+                            <a href="/categories/面经/" class="post-category" target="_blank">
+                                    面经
                                 </a>
                             
                             
@@ -897,8 +913,8 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Markdown/" target="_blank">
-                        <span class="chip bg-color">Markdown</span>
+                    <a href="/tags/面经/" target="_blank">
+                        <span class="chip bg-color">面经</span>
                     </a>
                     
                 </div>
@@ -909,46 +925,48 @@
         
         <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge right-badge text-color">
-                本篇&nbsp;<i class="fa fa-dot-circle-o"></i>
+                下一篇&nbsp;<i class="fa fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2022/03/01/5w2h-godweiyang/">
+                <a href="/2022/03/14/cpp-primer-4/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/18.jpg" class="responsive-img" alt="建站纪念">
+                        <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="C++ Primer (4) STL-IO库 (from chapter8)">
                         
-                        <span class="card-title">建站纪念</span>
+                        <span class="card-title">C++ Primer (4) STL-IO库 (from chapter8)</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            
+                            C++ Primer (4) STL-IO库 (from chapter8)入门知识
+
+Chapter 8.1 IO类
+下面的ifstream和istringstream都是继承自istream，所以都可以用&gt;&gt;进行操作，其他同
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2022-03-01
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2022-03-14
                             </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/随笔/" class="post-category" target="_blank">
-                                    随笔
+                            <a href="/categories/C/" class="post-category" target="_blank">
+                                    C++
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
-
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/博客/" target="_blank">
-                        <span class="chip bg-color">博客</span>
+                    <a href="/tags/C/" target="_blank">
+                        <span class="chip bg-color">C++</span>
                     </a>
                     
                 </div>
