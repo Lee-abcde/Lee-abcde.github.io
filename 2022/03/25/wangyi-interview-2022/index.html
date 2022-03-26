@@ -13,7 +13,7 @@
 
 游戏开发面经汇总
 
-总体流程：（时长1.5h)
+总体流程：(时长1.5h)
 
 
 自己写半小时算法题（简单难度）——给一颗二叉树，每个节点都有权重，求所有根节点到子节点的路径权重和
@@ -325,7 +325,7 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/0.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/1.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -480,14 +480,14 @@
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.7k
+                    1.9k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    5 分
+                    6 分
                 </div>
                 
                 
@@ -508,7 +508,7 @@
 </blockquote>
 <p><a href="https://zhuanlan.zhihu.com/p/417640759" target="_blank" rel="noopener">游戏开发面经汇总</a></p>
 <blockquote>
-<p>总体流程：（时长1.5h)</p>
+<p>总体流程：(时长1.5h)</p>
 </blockquote>
 <ol>
 <li><p>自己写半小时算法题（简单难度）——给一颗二叉树，每个节点都有权重，求所有根节点到子节点的路径权重和</p>
@@ -554,9 +554,14 @@
 </blockquote>
 <p><strong>6.Vector分配空间的原理</strong></p>
 <p><strong>7.List和Vector分配空间的区别</strong></p>
-<p><strong>8.开放题：从一堆数据中用最快的方式找数据，使用什么数据结构</strong></p>
+<p><strong>8.迭代器遍历Vector，如果使用push_back/insert会造成什么情况？一定会造成吗？</strong><br>解答一：<br>调push_back而迭代器不失效的条件是:没有发生重分配.而触发重分配的条件是新大小大于旧的容量。</p>
+<p>新的大小毋庸置疑就是5,会不会触发重分配取决于旧的容量是多少，然而标准并没有对容量的初始值，增长方式作处要求。于是,是否会触发重分配是不确定的。所以迭代器不失效也是不确定的。</p>
+<p>解答二（等效）：</p>
+<p>在使用push_back对vector进行构造的时候，vector的容量capacity(与size有区别)会根据压入元素的数量进行内存的自动重新分配，这时候iterator会因为vector存储空间的变化而失效，需要注意iterator的有效性，以免iterator指向未知的内存空间导致程序异常。</p>
+<p><a href="https://blog.csdn.net/hl_zzl/article/details/84798804" target="_blank" rel="noopener">实验分析</a></p>
+<p><strong>9.开放题：从一堆数据中用最快的方式找数据，使用什么数据结构</strong></p>
 <p>哈希表</p>
-<p><strong>9.哈希冲突检测方法</strong></p>
+<p><strong>10.哈希冲突检测方法</strong></p>
 <blockquote>
 <p>python和计网</p>
 </blockquote>
@@ -564,8 +569,8 @@
 <blockquote>
 <p>OS部分</p>
 </blockquote>
-<p><strong>10.进程和线程的区别</strong></p>
-<p><strong>11.进程和线程的回收</strong></p>
+<p><strong>11.进程和线程的区别</strong></p>
+<p><strong>12.进程和线程的回收</strong></p>
 <p><strong>孤儿进程</strong>：如果父进程先于子进程退出，则子进程成为孤儿进程，此时将自动被PID为1的进程（即init）接管。孤儿进程退出后，它的清理工作有祖先进程init自动处理。init清理没那么及时，毕竟不是亲爹。</p>
 <p>子进程退出时，应当由父进程回收资源。应当避免父进程退出了，子进程还在的情况。即， 应当避免孤儿进程。所以父进程要等子进程运行完了再退出。</p>
 <p><strong>僵尸进程</strong>：如果子进程先退出，系统不会自动清理掉子进程的环境，而必须由父进程调用wait或waitpid函数来完成清理工作，如果父进程不做清理工作，则已经退出的子进程将成为僵尸进程(defunct),在系统中如果存在的僵尸（zombie）进程过多，将会影响系统的性能，所以必须对僵尸进程进行处理。</p>
@@ -573,7 +578,7 @@
 <p>于一个进程中的多个线程是共享数据段的，通常在线程退出之后，退出线程所占用的资源并不会随着线程的终止而得到释放。</p>
 <p>pthread_join()函数，类似进程的wait()/waitpid()函数，用于将当前线程挂起来等待线程的结束，是一个线程阻塞的函数，调用它的线程一直等待到被等待的。线程结束为止，函数返回时，被等待线程的资源就被收回</p>
 <p><a href="https://blog.csdn.net/qq_17308321/article/details/49642183" target="_blank" rel="noopener">线程细节</a></p>
-<p><strong>12.线程存放在进程的哪个区域</strong></p>
+<p><strong>13.线程存放在进程的哪个区域</strong></p>
 <p>线程的内存模型：<br>每个线程独立的线程上下文：一个唯一的整数线程ID, 栈和栈指针，程序计数器，通用目的寄存器和条件码。<br>和其他线程共享的进程上下文的剩余部分：整个用户虚拟地址空间，那就是上图的只读代码段，读/写数据段，堆以及所有的共享库代码和数据区域，也共享所有打开文件的集合。</p>
 <p>这里要注意的是线程的寄存器是不共享的，通常栈区是被相应线程独立访问的，但是还是可能出现一个线程去访问另一个线程中的栈区的情况。这是因为这个线程获得了指向另一个线程栈区的指针，那么它就可以读写这个栈的任何部分。</p>
 <p><a href="https://blog.csdn.net/PinkFriday/article/details/78299857?utm_medium=distribute.pc_aggpage_search_result.none-task-blog-2~aggregatepage~first_rank_ecpm_v1~rank_v31_ecpm-2-78299857.pc_agg_new_rank&utm_term=%E7%BA%BF%E7%A8%8B%E5%9C%A8%E8%BF%9B%E7%A8%8B%E5%9C%B0%E5%9D%80%E7%A9%BA%E9%97%B4&spm=1000.2123.3001.4430" target="_blank" rel="noopener">具体解释</a></p>
@@ -951,7 +956,7 @@
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="网易互娱游戏研发暑期实习面经2022（一面技术面）">
+                        <img src="/medias/featureimages/1.jpg" class="responsive-img" alt="网易互娱游戏研发暑期实习面经2022（一面技术面）">
                         
                         <span class="card-title">网易互娱游戏研发暑期实习面经2022（一面技术面）</span>
                     </div>
@@ -964,7 +969,7 @@
 
 游戏开发面经汇总
 
-总体流程：（时长1.5h)
+总体流程：(时长1.5h)
 
 
 自己写半小时算法题（简单难度）——给一颗二叉树，每个节点都有权重，求所有根节点到子节点的路径权重和
@@ -1010,7 +1015,7 @@
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/18.jpg" class="responsive-img" alt="C++ Primer (5) 顺序容器 (from chapter9)">
+                        <img src="/medias/featureimages/19.jpg" class="responsive-img" alt="C++ Primer (5) 顺序容器 (from chapter9)">
                         
                         <span class="card-title">C++ Primer (5) 顺序容器 (from chapter9)</span>
                     </div>
@@ -1219,7 +1224,7 @@
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">4.8k</span>
+            <span class="white-color">5.3k</span>
             
 
             <br>

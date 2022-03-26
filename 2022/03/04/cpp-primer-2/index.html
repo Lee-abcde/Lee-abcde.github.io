@@ -319,7 +319,7 @@ using std::cin;">
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/2.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/3.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -474,14 +474,14 @@ using std::cin;">
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    832
+                    1k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    3 分
+                    4 分
                 </div>
                 
                 
@@ -503,19 +503,34 @@ using std::cin;">
 <pre class="line-numbers language-cpp"><code class="language-cpp"><span class="token keyword">using</span> std<span class="token operator">::</span>cin<span class="token punctuation">;</span><span class="token comment" spellcheck="true">//只调用std空间中中的cin</span>
 <span class="token keyword">using</span> <span class="token keyword">namespace</span> std<span class="token punctuation">;</span><span class="token comment" spellcheck="true">//调用std空间中的所有名字</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 <h4 id="3-2-标准库string"><a href="#3-2-标准库string" class="headerlink" title="3.2 标准库string"></a>3.2 标准库string</h4><ul>
-<li><p>初始化<br><img src="//lee-abcde.github.io/2022/03/04/cpp-primer-2/String1.png" alt></p>
-</li>
-<li><p>cin读入：<code>cin&gt;&gt;s;</code>会忽略开头的空格，从第一个有效字符开始，到第一个空白结束。 </p>
-</li>
-<li><p>getline读入：<code>getline(cin,line)</code>会读入包括空格，直到读入换行符结束，但不读入换行符。<br><img src="//lee-abcde.github.io/2022/03/04/cpp-primer-2/String2.png" alt></p>
-</li>
-<li><p>String遍历</p>
-<pre class="line-numbers language-cpp"><code class="language-cpp">string s<span class="token punctuation">;</span>
+<li>初始化<br><img src="//lee-abcde.github.io/2022/03/04/cpp-primer-2/String1.png" alt></li>
+<li>cin读入：<code>cin&gt;&gt;s;</code>会忽略开头的空格，从第一个有效字符开始，到第一个空白结束。 </li>
+<li>getline读入：<code>getline(cin,line)</code>会读入包括空格，直到读入换行符结束，但不读入换行符。</li>
+</ul>
+<p><strong>注意：当前面已经用cin读入数据之后要用getline读入数据时，要先使用<code>getchar()</code>把之前的换行符给读出来</strong></p>
+<pre class="line-numbers language-cpp"><code class="language-cpp">cin<span class="token operator">>></span>n<span class="token operator">>></span>m<span class="token punctuation">;</span><span class="token comment" spellcheck="true">//先读入两int型数字</span>
+<span class="token function">getchar</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//读走换行符</span>
+<span class="token function">getline</span><span class="token punctuation">(</span>cin<span class="token punctuation">,</span>string<span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p><img src="//lee-abcde.github.io/2022/03/04/cpp-primer-2/String2.png" alt></p>
+<ul>
+<li>String遍历<pre class="line-numbers language-cpp"><code class="language-cpp">string s<span class="token punctuation">;</span>
 <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">auto</span> c<span class="token operator">:</span> s<span class="token punctuation">)</span><span class="token comment" spellcheck="true">//仅仅用来遍历</span>
 <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">auto</span> <span class="token operator">&amp;</span>c<span class="token operator">:</span> s<span class="token punctuation">)</span><span class="token comment" spellcheck="true">//遍历的同时可以改变s的值</span>
 s<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token comment" spellcheck="true">// 下标访问的关键是使用前要判断s是否为空，否则s[0]越界</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
+</ul>
+<p><strong>注意：string和数组一样，短暂的越界不会报错，2022网易雷火笔试犯了错误，导致范访问了未知的string值，推进去另一个string中，这个值是个空值，输出上看不出区别，但是会导致被推入string.size增加,最终导致判题器报错，但是表面上检查不出任何区别</strong></p>
+<pre class="line-numbers language-cpp"><code class="language-cpp">string s<span class="token operator">=</span><span class="token string">"123"</span><span class="token punctuation">;</span>
+string s1<span class="token operator">=</span><span class="token string">""</span><span class="token punctuation">;</span>
+<span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>i<span class="token operator">&lt;=</span><span class="token number">3</span><span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    s1<span class="token operator">+</span><span class="token operator">=</span>s<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+cout<span class="token operator">&lt;&lt;</span>s1<span class="token operator">&lt;&lt;</span>endl<span class="token punctuation">;</span>
+cout<span class="token operator">&lt;&lt;</span>s1<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">&lt;&lt;</span>endl<span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">//最后输出s1为123</span>
+<span class="token comment" spellcheck="true">//但是s1.size=4</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h4 id="3-3-标准库Vector"><a href="#3-3-标准库Vector" class="headerlink" title="3.3 标准库Vector"></a>3.3 标准库Vector</h4><p>vector是<strong>模板</strong>而不是类型，需要指定数据类型，如<code>vector&lt;int&gt; v</code>。vector可以容纳大多数的对象，但是引用不是对象，所以无法容纳引用。<br><img src="//lee-abcde.github.io/2022/03/04/cpp-primer-2/Vector1.png" alt>  </p>
-<h4 id="3-4-迭代器"><a href="#3-4-迭代器" class="headerlink" title="3.4 迭代器"></a>3.4 迭代器</h4></li>
+<h4 id="3-4-迭代器"><a href="#3-4-迭代器" class="headerlink" title="3.4 迭代器"></a>3.4 迭代器</h4><ul>
 <li><p>迭代器使用<code>auto b=v.begin(),e=v.end();</code>当v为空，begin和end返回的迭代器是相同的。注意end()返回的迭代器指向的一个不存在末尾元素，仅仅作为标记。<br><img src="//lee-abcde.github.io/2022/03/04/cpp-primer-2/Iter1.png" alt><br>注意：不能解引用<strong>尾后迭代器和非法迭代器</strong></p>
 </li>
 <li><p><code>for(auto it=v.begin(); it!=v.end(); ++it)</code><br><img src="//lee-abcde.github.io/2022/03/04/cpp-primer-2/Iter2.png" alt> </p>
@@ -926,7 +941,7 @@ pf<span class="token operator">=</span>lengthCompare<span class="token punctuati
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/17.jpg" class="responsive-img" alt="C++ Primer (3) 类 (from chapter7)">
+                        <img src="/medias/featureimages/18.jpg" class="responsive-img" alt="C++ Primer (3) 类 (from chapter7)">
                         
                         <span class="card-title">C++ Primer (3) 类 (from chapter7)</span>
                     </div>
@@ -977,7 +992,7 @@ Chapter 7.1 定义抽象数据类型
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/3.jpg" class="responsive-img" alt="C++ Primer (1) 变量和基本类型(from chapter1~2)">
+                        <img src="/medias/featureimages/4.jpg" class="responsive-img" alt="C++ Primer (1) 变量和基本类型(from chapter1~2)">
                         
                         <span class="card-title">C++ Primer (1) 变量和基本类型(from chapter1~2)</span>
                     </div>
@@ -1187,7 +1202,7 @@ Window系统输入文件结束符：Ctrl+Z 然后 Enter/Retu
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">4.8k</span>
+            <span class="white-color">5.3k</span>
             
 
             <br>
