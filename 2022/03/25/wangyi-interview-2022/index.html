@@ -481,14 +481,14 @@
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    2k
+                    2.5k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    6 分
+                    8 分
                 </div>
                 
                 
@@ -588,8 +588,27 @@
 <blockquote>
 <p>游戏代码考核</p>
 </blockquote>
-<p>如果m人抽奖抽取k个礼品，体统随机函数，用什么策略去抽奖</p>
-<p>如何在一个圆中随机选定坐标，类似于吃鸡中求生包的选定</p>
+<p><strong>如果m人抽奖抽取k个礼品，提供随机函数，用什么策略去抽奖</strong></p>
+<p>报名抽奖模式（个人解）：对于m人抽取k个礼品，如果<code>m&gt;k/2</code>，我们就抽取没有中奖的人数，否则我们就直接抽奖<code>m</code>个人。此时我们设计到的最坏情况就是如果<code>m==k/2</code>的时候如何进行抽奖。</p>
+<p>假设我们一共有2*n个用户，需要抽取n个人。我们的策略是暴力抽奖，我们抽到了这个人就用bool型记载这个人已经抽过奖品了。我们抽第一个人，命中之前没中奖过的人的概率为<code>2n/2n=1</code>，期望是1。我们抽最后一个人的时候，命中之前没中奖过的人的概率为<code>n+1/2n近似于0.5</code>，期望接近2。我们抽n次奖，期望和就是(2n/2n)+(2n-1/2n)+…+(n+1/2n)。</p>
+<p>我们需要计算的是一个微积分，假设n无限大的时候，我们每次抽奖的预估期望是<code>f(x)=1/x</code>从<code>[1/2,1]</code>的一个积分。我们积分得到的结果是<code>ln2</code>。那么我们期望通过抽取<code>（ln2）*n</code>次就能抽出中奖者，这样的线性代价我决定完全可以接受。</p>
+<p>验证程序：最后结果接近ln2，实际验证也是线性复杂度。</p>
+<pre class="line-numbers language-cpp"><code class="language-cpp"><span class="token macro property">#<span class="token directive keyword">include</span><span class="token string">&lt;bits/stdc++.h></span></span>
+<span class="token keyword">using</span> <span class="token keyword">namespace</span> std<span class="token punctuation">;</span>
+<span class="token keyword">int</span>  <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">int</span> n<span class="token operator">=</span><span class="token number">6000000</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//总人数为2*n</span>
+    <span class="token keyword">float</span> ans<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>i<span class="token operator">&lt;=</span>n<span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        ans<span class="token operator">+</span><span class="token operator">=</span><span class="token keyword">float</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token operator">*</span>n<span class="token punctuation">)</span><span class="token operator">/</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token operator">*</span>n<span class="token operator">-</span>i<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    cout<span class="token operator">&lt;&lt;</span>ans<span class="token operator">/</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token operator">*</span>n<span class="token punctuation">)</span><span class="token operator">&lt;&lt;</span>endl<span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>抽卡模式：比较好的想法是利用分布式的想法，每个人发送抽奖请求，核心程序设置中奖几率在服务器上进行抽奖，如果抽中，返回中奖信息。</p>
+<p><a href="https://www.zhihu.com/question/31687073" target="_blank" rel="noopener">知乎——设计抽奖系统</a></p>
+<p><strong>如何在一个圆中随机选定坐标，类似于吃鸡中求生包的选定</strong></p>
+<p>方法一：根据条件判断的随机点产生方法，在正方形里面随机然后只留下来在圆内的点。</p>
+<p>方法二：极坐标产生随机点</p>
 
             </div>
             <hr />
@@ -1228,7 +1247,7 @@
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">5.3k</span>
+            <span class="white-color">5.8k</span>
             
 
             <br>
