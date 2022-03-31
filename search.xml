@@ -8,7 +8,7 @@
       <link href="/2022/03/31/video2video-synthesis/"/>
       <url>/2022/03/31/video2video-synthesis/</url>
       
-        <content type="html"><![CDATA[<h1 id="video2video-synthesis论文阅读"><a href="#video2video-synthesis论文阅读" class="headerlink" title="video2video synthesis论文阅读"></a>video2video synthesis论文阅读</h1><blockquote><h3 id="1-Video-to-Video-Synthesis-NuerlPS2018"><a href="#1-Video-to-Video-Synthesis-NuerlPS2018" class="headerlink" title="1. Video-to-Video Synthesis (NuerlPS2018)"></a>1. Video-to-Video Synthesis (NuerlPS2018)</h3></blockquote>]]></content>
+        <content type="html"><![CDATA[<h1 id="video2video-synthesis论文阅读"><a href="#video2video-synthesis论文阅读" class="headerlink" title="video2video synthesis论文阅读"></a>video2video synthesis论文阅读</h1><blockquote><h3 id="1-Video-to-Video-Synthesis-NuerlPS2018"><a href="#1-Video-to-Video-Synthesis-NuerlPS2018" class="headerlink" title="1. (Video-to-Video) (Synthesis) (NuerlPS2018)"></a>1. (Video-to-Video) (Synthesis) (NuerlPS2018)</h3></blockquote><p>(Research) (Problem)</p><p><strong>Conditional Video-to-Video Synthesis</strong>:学习连续<strong>semantic segmentation mask/face sketches/Body poses</strong>到另一个视频的映射,在连续语义标签的指导下生成一个真实的、符合语义标签的视频。</p><hr><p>(Related) (works)</p><ol><li><p>输入的语义指导信息多元：噪声、类标签（等视觉类信息）、文字等, 这些都可以做图像视频生成。</p></li><li><p>Unconditional video synthesis把vector生成出一个video,但生成出的是低分辨率短时间的视频。</p></li></ol><hr><p>(Method)</p><p><strong>问题定义</strong></p><p>希望P（假视频|连续语义标签） =P（真视频|连续语义标签），通过优化GAN来缩小两者的散度，D会判断该视频是否是来自该连续语义标签的视频，G会尝试去欺骗它。</p><p><strong>序列生成</strong></p><p>遵守马尔科夫假设，当前帧Fi的生成只和第i帧的语义标签和前L帧的语义标签和已经生成好的图像有关系。（该论文L=2）</p><p><strong>模型构成</strong></p><ol><li>光流模型、软mask模型</li></ol><p>第i帧图像=（1-mask） dot 光流模型基于前L帧预测出的第i帧 + mask dot 初步生成的第i帧图像。 </p><ol start="2"><li>Conditional image discriminator（控制图像质量）</li></ol><p>预测该图片是不是对应语义信息的原配，如果是（原图，语义信息）则返回1，对于（生成出来的图片，语义信息）就要返回0。</p><ol start="3"><li>Conditional video discriminator（控制视频连续性质量）</li></ol><p>给定某个图像，判断对于K帧之前的真实光流生成出来的图像是否为该图像，如果是则返回1，否则返回0。</p><p><strong>损失函数</strong></p><p>两个D网络的Loss+光流预测的loss</p><p><strong>前景后景先验</strong></p><p>对于图像初步生成器来说，街道可以当做后景，车和行人当做前景。</p><p>后景：光流估测校较准，物体不需要移动，只需要生成出少量的被遮挡区域。</p><p>前景：物体总是在移动，且占据画面较小。</p><p>组合前景和后景，需要第二个mask来分割画面，这个mask大概率是硬mask。</p><hr><p>(Summery)</p><p><strong>可能改进方向</strong></p><p>1.生成器的更新可以看看英伟达的文章SPADE和后续</p><p>2.展望了通过初始几帧直接合成后面视频的任务</p><p>3.语义信息不足、物体形态不能保持一致、物体颜色渐变、添加语义信息生成结果不好看</p>]]></content>
       
       
       <categories>
@@ -220,7 +220,7 @@
       
         <tags>
             
-            <tag> 博客 </tag>
+            <tag> 随笔 </tag>
             
         </tags>
       
