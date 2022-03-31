@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://lee-abcde.github.io/"/>
-  <updated>2022-03-31T02:11:22.128Z</updated>
+  <updated>2022-03-31T02:54:31.376Z</updated>
   <id>https://lee-abcde.github.io/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="https://lee-abcde.github.io/2022/03/31/video2video-synthesis/"/>
     <id>https://lee-abcde.github.io/2022/03/31/video2video-synthesis/</id>
     <published>2022-03-31T02:02:41.000Z</published>
-    <updated>2022-03-31T02:11:22.128Z</updated>
+    <updated>2022-03-31T02:54:31.376Z</updated>
     
     <summary type="html">
     
@@ -34,6 +34,8 @@
       
     
     </summary>
+    
+      <category term="论文阅读" scheme="https://lee-abcde.github.io/categories/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/"/>
     
     
       <category term="video2video synthesis" scheme="https://lee-abcde.github.io/tags/video2video-synthesis/"/>
