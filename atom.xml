@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://lee-abcde.github.io/"/>
-  <updated>2022-03-29T12:09:33.370Z</updated>
+  <updated>2022-03-31T02:11:22.128Z</updated>
   <id>https://lee-abcde.github.io/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>video2video synthesis论文阅读</title>
+    <link href="https://lee-abcde.github.io/2022/03/31/video2video-synthesis/"/>
+    <id>https://lee-abcde.github.io/2022/03/31/video2video-synthesis/</id>
+    <published>2022-03-31T02:02:41.000Z</published>
+    <updated>2022-03-31T02:11:22.128Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;video2video-synthesis论文阅读&quot;&gt;&lt;a href=&quot;#video2video-synthesis论文阅读&quot; class=&quot;headerlink&quot; title=&quot;video2video
+        
+      
+    
+    </summary>
+    
+    
+      <category term="video2video synthesis" scheme="https://lee-abcde.github.io/tags/video2video-synthesis/"/>
+    
+  </entry>
   
   <entry>
     <title>网易互娱游戏研发暑期实习面经2022（一面技术面）</title>
@@ -47,7 +71,7 @@
     <link href="https://lee-abcde.github.io/2022/03/15/cpp-primer-5/"/>
     <id>https://lee-abcde.github.io/2022/03/15/cpp-primer-5/</id>
     <published>2022-03-15T03:34:28.000Z</published>
-    <updated>2022-03-30T12:29:34.873Z</updated>
+    <updated>2022-03-31T01:57:31.743Z</updated>
     
     <summary type="html">
     
@@ -177,7 +201,7 @@
     <link href="https://lee-abcde.github.io/2022/03/02/article-title/"/>
     <id>https://lee-abcde.github.io/2022/03/02/article-title/</id>
     <published>2022-03-02T07:29:53.000Z</published>
-    <updated>2022-03-02T09:13:20.326Z</updated>
+    <updated>2022-03-31T02:05:30.558Z</updated>
     
     <summary type="html">
     
