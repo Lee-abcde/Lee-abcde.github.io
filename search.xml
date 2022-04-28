@@ -4,6 +4,19 @@
   
     
     <entry>
+      <title>OpenGL_learning基础入门(0)</title>
+      <link href="/2022/04/27/opengl-learning0/"/>
+      <url>/2022/04/27/opengl-learning0/</url>
+      
+        <content type="html"><![CDATA[<h1 id="OpenGL-learning基础入门-0"><a href="#OpenGL-learning基础入门-0" class="headerlink" title="OpenGL_learning基础入门(0)"></a>OpenGL_learning基础入门(0)</h1><hr><h2 id="基础概念"><a href="#基础概念" class="headerlink" title="基础概念"></a>基础概念</h2><ul><li><strong>核心模式与立即渲染模式</strong></li></ul><p>OpenGL3.2开始，规范文档开始废弃立即渲染模式，并鼓励开发者在OpenGL的核心模式(Core-profile)下进行开发，这个分支的规范完全移除了旧的特性。</p><p>立即渲染模式从OpenGL实际运作中抽象掉了很多细节，因此它在易于学习的同时，也很难让人去把握OpenGL具体是如何运作的。现代函数要求使用者真正理解OpenGL和图形编程，它有一些难度，然而提供了更多的灵活性，更高的效率，更重要的是可以更深入的理解图形编程。</p><ul><li><p><strong>扩展</strong></p><pre><code>if(GL_ARB_extension_name){  // 使用硬件支持的全新的现代特性}else{  // 不支持此扩展: 用旧的方式去做}</code></pre></li><li><p><strong>状态机</strong></p></li></ul><p>OpenGL自身是一个巨大的状态机(State Machine)：一系列的变量描述OpenGL此刻应当如何运行。OpenGL的状态通常被称为OpenGL<strong>上下文</strong>(Context)。我们通常使用如下途径去更改OpenGL状态：设置选项，操作缓冲。最后，我们使用当前OpenGL上下文来渲染。</p><p>当使用OpenGL的时候，我们会遇到一些<strong>状态设置函数</strong>(State-changing Function)，这类函数将会改变上下文。以及<strong>状态使用函数</strong>(State-using Function)，这类函数会根据当前OpenGL的状态执行一些操作。只要你记住OpenGL本质上是个大状态机，就能更容易理解它的大部分特性。</p><ul><li><strong>对象</strong></li></ul><pre><code>// 创建对象unsigned int objectId = 0;glGenObject(1, &amp;objectId);// 绑定对象至上下文glBindObject(GL_WINDOW_TARGET, objectId);// 设置当前绑定到 GL_WINDOW_TARGET 的对象的一些选项glSetObjectOption(GL_WINDOW_TARGET, GL_OPTION_WINDOW_WIDTH, 800);glSetObjectOption(GL_WINDOW_TARGET, GL_OPTION_WINDOW_HEIGHT, 600);// 将上下文对象设回默认glBindObject(GL_WINDOW_TARGET, 0);</code></pre><hr><h2 id="窗口"><a href="#窗口" class="headerlink" title="窗口"></a>窗口</h2><ul><li>GLFW</li></ul><p>GLFW是一个专门针对OpenGL的C语言库，它提供了一些渲染物体所需的最低限度的接口。它允许用户创建OpenGL上下文、定义窗口参数以及处理用户输入，对我们来说这就够了。</p><ul><li>GLAD</li></ul><p>由于OpenGL驱动版本众多，它大多数函数的位置都无法在编译时确定下来，需要在运行时查询。所以任务就落在了开发者身上，开发者需要在运行时获取函数地址并将其保存在一个函数指针中供以后使用。幸运的是，有些库能简化此过程，其中GLAD是目前最新，也是最流行的库。</p><ul><li>渲染循环(Render Loop)</li></ul><pre><code>while(!glfwWindowShouldClose(window)){    glfwSwapBuffers(window);    glfwPollEvents();    }</code></pre><p><img src="//lee-abcde.github.io/2022/04/27/opengl-learning0/0.png" alt></p><hr><h2 id="三角形"><a href="#三角形" class="headerlink" title="三角形"></a>三角形</h2><h4 id="基础概念-1"><a href="#基础概念-1" class="headerlink" title="基础概念"></a>基础概念</h4><ul><li><p><strong>图元</strong>：为了让OpenGL知道我们的坐标和颜色值构成的到底是什么，OpenGL需要你去指定这些数据所表示的渲染类型。我们是希望把这些数据渲染成一系列的点？一系列的三角形？还是仅仅是一个长长的线？做出的这些提示叫做<strong>图元(Primitive)</strong>，任何一个绘制指令的调用都将把图元传递给OpenGL。这是其中的几个：GL_POINTS、GL_TRIANGLES、GL_LINE_STRIP。</p></li><li><p>OpenGL中的一个<strong>片段</strong>是OpenGL渲染一个像素所需的所有数据。</p></li></ul><h4 id="OpenGL渲染管线过程"><a href="#OpenGL渲染管线过程" class="headerlink" title="OpenGL渲染管线过程"></a>OpenGL渲染管线过程</h4><p><img src="//lee-abcde.github.io/2022/04/27/opengl-learning0/1.png" alt></p><h4 id="顶点输入"><a href="#顶点输入" class="headerlink" title="顶点输入"></a>顶点输入</h4><p><strong>标准化设备坐标(Normalized Device Coordinates, NDC)</strong>：一旦你的顶点坐标已经在顶点着色器中处理过，它们就应该是标准化设备坐标了，标准化设备坐标是一个x、y和z值在-1.0到1.0的一小段空间。</p><h4 id="顶点着色器"><a href="#顶点着色器" class="headerlink" title="顶点着色器"></a>顶点着色器</h4><pre><code>// 简易着色器#version 330 core // 版本layout (location = 0) in vec3 aPos;void main(){    gl_Position = vec4(aPos.x, aPos.y, aPos.z, 1.0);    //为了设置顶点着色器的输出，我们必须把位置数据赋值给预定义的gl_Position变量。    //它在幕后是vec4类型的。    //在main函数的最后，我们将gl_Position设置的值会成为该顶点着色器的输出。}</code></pre><h4 id="片段着色器"><a href="#片段着色器" class="headerlink" title="片段着色器"></a>片段着色器</h4>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>腾讯IEG游戏研发暑期实习笔试2022</title>
       <link href="/2022/04/25/tencent-interview-2022/"/>
       <url>/2022/04/25/tencent-interview-2022/</url>
@@ -29,7 +42,7 @@
     
     
     <entry>
-      <title>网易雷火游戏研发暑期实习面经2022（一、二面技术面）</title>
+      <title>网易雷火游戏研发暑期实习面经2022（一、二、三面技术面，已发OFFER）</title>
       <link href="/2022/04/08/leihuo-interview-2022/"/>
       <url>/2022/04/08/leihuo-interview-2022/</url>
       
@@ -54,7 +67,7 @@
     
     
     <entry>
-      <title>莉莉丝游戏研发暑期实习面经2022（一、二面技术面）</title>
+      <title>莉莉丝游戏研发暑期实习面经2022（一、二面技术面，已发OFFER）</title>
       <link href="/2022/04/07/lilisi-interview-2022/"/>
       <url>/2022/04/07/lilisi-interview-2022/</url>
       
