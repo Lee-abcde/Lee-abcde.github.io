@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://lee-abcde.github.io/"/>
-  <updated>2022-05-19T11:52:27.749Z</updated>
+  <updated>2022-06-28T01:30:02.190Z</updated>
   <id>https://lee-abcde.github.io/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>OpenGL_learning基础入门(1)</title>
+    <link href="https://lee-abcde.github.io/2022/06/28/opengl-learning1/"/>
+    <id>https://lee-abcde.github.io/2022/06/28/opengl-learning1/</id>
+    <published>2022-06-28T01:28:45.000Z</published>
+    <updated>2022-06-28T01:30:02.190Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;OpenGL-learning基础入门-1&quot;&gt;&lt;a href=&quot;#OpenGL-learning基础入门-1&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="Graphics" scheme="https://lee-abcde.github.io/categories/Graphics/"/>
+    
+    
+      <category term="Graphics" scheme="https://lee-abcde.github.io/tags/Graphics/"/>
+    
+  </entry>
   
   <entry>
     <title>CUHK 2022.5提前批面试</title>
@@ -73,7 +99,7 @@
     <link href="https://lee-abcde.github.io/2022/04/27/opengl-learning0/"/>
     <id>https://lee-abcde.github.io/2022/04/27/opengl-learning0/</id>
     <published>2022-04-27T13:32:48.000Z</published>
-    <updated>2022-05-10T12:53:10.221Z</updated>
+    <updated>2022-06-28T01:29:13.434Z</updated>
     
     <summary type="html">
     
@@ -177,7 +203,7 @@
     <link href="https://lee-abcde.github.io/2022/04/05/23fall-2/"/>
     <id>https://lee-abcde.github.io/2022/04/05/23fall-2/</id>
     <published>2022-04-05T14:14:33.000Z</published>
-    <updated>2022-06-26T09:43:37.438Z</updated>
+    <updated>2022-06-27T15:21:23.083Z</updated>
     
     <summary type="html">
     
@@ -203,7 +229,7 @@
     <link href="https://lee-abcde.github.io/2022/04/02/23fall-1/"/>
     <id>https://lee-abcde.github.io/2022/04/02/23fall-1/</id>
     <published>2022-04-02T15:06:55.000Z</published>
-    <updated>2022-06-26T12:11:59.790Z</updated>
+    <updated>2022-06-27T16:01:11.848Z</updated>
     
     <summary type="html">
     
