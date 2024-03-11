@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="Lee">
+
+
+
+
+
+
+
+<title>Quaternion | Lee</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;700&family=Roboto+Mono&display=swap');
+</style>
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/frame.js"></script>
+    
+
+
+
+
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+
+
+
+
+
+
+  <meta name="generator" content="Hexo 5.4.2"></head>
+  <body>
+    <div class="mask-border">
+    </div>
+
+    <div class="wrapper">
+
+      <div class="header">
+  <div class="flex-container">
+    <div class="header-inner">
+      <div class="site-brand-container">
+        <a href="/">
+          
+            Lee&#39;s Blog
+          
+        </a>
+      </div>
+      <div id="menu-btn" class="menu-btn" onclick="toggleMenu()">
+        Menu
+      </div>
+      <nav class="site-nav">
+        <ul class="menu-list">
+          
+            
+              <li class="menu-item">
+                <a href="/">Home</a>
+              </li> 
+                   
+          
+            
+              <li class="menu-item">
+                <a href="/categories/gallery/">Blog</a>
+              </li> 
+                   
+          
+            
+              <li class="menu-item">
+                <a href="/archives/">Archive</a>
+              </li> 
+                   
+          
+            
+              <li class="menu-item">
+                <a href="/tag/">Tag</a>
+              </li> 
+                   
+          
+            
+              <li class="menu-item">
+                <a href="/about/">About</a>
+              </li> 
+                   
+          
+          
+        </ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main">
+        <div class="flex-container">
+          <article id="post">
+
+  
+    <div class="post-head">
+    <div class="post-info">
+        <div class="tag-list">
+            
+                
+                    <span class="post-tag">
+                        <a href="/tags/Math/">
+                            Math
+                        </a>
+                    </span>    
+                           
+            
+        </div>
+        <div class="post-title">
+            
+            
+                Quaternion
+            
+            
+        </div>
+        <span class="post-date">
+            Aug 25, 2022
+        </span>
+    </div>
+    <div class="post-img">
+        
+            <img src="/./images/2.jpeg" alt="featured_image">
+              
+    </div>
+</div>
+    <div class="post-content">
+    <div class="toc">
+
+<!-- toc -->
+
+<ul>
+<li><a href="#xuan-zhuan-de-chang-jian-biao-shi-fang-fa">旋转的常见表示方法：</a></li>
+<li><a href="#si-yuan-shu">四元数</a></li>
+<li><a href="#si-yuan-shu-cha-zhi-jin-jie">四元数插值进阶</a></li>
+<li><a href="#squad-fang-fa-waiting-to-be-done">Squad方法（waiting to be done）</a></li>
+</ul>
+<!-- tocstop -->
+
+</div>
+
+<h3><span id="xuan-zhuan-de-chang-jian-biao-shi-fang-fa">旋转的常见表示方法：</span><a href="#xuan-zhuan-de-chang-jian-biao-shi-fang-fa" class="header-anchor"></a></h3><ol>
+<li><p>欧拉角（cons: 万向节死锁，静态欧拉角不存在万向锁问题，只有动态欧拉角会引起万向锁）</p>
+<p>万向节死锁的思考：为了方便调整旋转方向，我们得控制变量，每次只旋转一个轴，所以得采用Gimbal的形式，这种不断基于上次旋转修改的操作我们得使用动态欧拉角，但这种默认旋转调整顺序就导致动态欧拉角会出现欧拉角的层级，层级化的欧拉角由此导致Gimbal lock。</p>
+</li>
+<li><p>旋转矩阵（绕x\y\z轴旋转之后再累乘，每一次旋转都是一次特定的轴角表示下的旋转，三维旋转矩阵不可交换顺序）|  轴角表示（绕特定轴旋转某个角度）- 罗德里格斯旋转公式</p>
+</li>
+<li><p>四元数（较难直观认知）</p>
+</li>
+</ol>
+<h3><span id="si-yuan-shu">四元数</span><a href="#si-yuan-shu" class="header-anchor"></a></h3><p><a target="_blank" rel="noopener" href="https://krasjet.github.io/quaternion/quaternion.pdf">四元数学习Pdf</a></p>
+<h4><span id="si-yuan-shu-ding-yi-yi-ge-shi-bu-san-ge-xu-bu-ding-yi-zhong-de-guan-jian-xing-zhi-xu-bu-de-yun-suan-xing-zhi"><strong>四元数定义</strong>：一个实部三个虚部, 定义中的关键性质：虚部的运算性质</span><a href="#si-yuan-shu-ding-yi-yi-ge-shi-bu-san-ge-xu-bu-ding-yi-zhong-de-guan-jian-xing-zhi-xu-bu-de-yun-suan-xing-zhi" class="header-anchor"></a></h4><p><img src="./definition.png"></p>
+<h4><span id="si-yuan-shu-cheng-fa">四元数乘法：</span><a href="#si-yuan-shu-cheng-fa" class="header-anchor"></a></h4><p>四元数之间的<strong>乘法不遵守交换律</strong>，虚部乘法的运算法则是由上述性质推导出来的</p>
+<p><img src="./multiple.png"></p>
+<p>有虚部的运算法则，我们可以得到乘法的完整表述，并可以把乘法用矩阵描述</p>
+<p><img src="./matrixFormat.png"></p>
+<p>除了矩阵之外，我们也可以把乘法操作用向量的点积和差积表述</p>
+<p><img src="./grabmann.png"></p>
+<h4><span id="si-yuan-shu-de-ni-he-gong-e">四元数的逆和共轭</span><a href="#si-yuan-shu-de-ni-he-gong-e" class="header-anchor"></a></h4><ul>
+<li>标准四元数的逆是唯一的，本质上是两个共轭的四元数把虚部消除掉，只剩下实部。而共轭四元数的乘法是特殊的，满足交换律。</li>
+<li>q* 表示四元数的共轭，就是虚部取反的四元数</li>
+<li>q乘q的逆=q的逆乘q=1</li>
+</ul>
+<p><img src="./reverseEquation.png"></p>
+<h4><span id="si-yuan-shu-de-xuan-zhuan-de-chu-bu-jie-lun">四元数的旋转的初步结论</span><a href="#si-yuan-shu-de-xuan-zhuan-de-chu-bu-jie-lun" class="header-anchor"></a></h4><p>思路是沿着v向量某个轴u旋转的话，把a拆成平行轴的部分和垂直轴的部分</p>
+<p><img src="./rotateEq1.png"></p>
+<p><img src="./rotateEq2.png"></p>
+<p><img src="./rotateEq3.png"></p>
+<h4><span id="si-yuan-shu-de-xuan-zhuan-de-jin-yi-bu-hua-jian-1">四元数的旋转的进一步化简（1）</span><a href="#si-yuan-shu-de-xuan-zhuan-de-jin-yi-bu-hua-jian-1" class="header-anchor"></a></h4><p><img src="./rotateLm1.png"></p>
+<p><img src="./rotateInference1.png"></p>
+<h4><span id="si-yuan-shu-de-xuan-zhuan-de-jin-yi-bu-hua-jian-2">四元数的旋转的进一步化简（2）</span><a href="#si-yuan-shu-de-xuan-zhuan-de-jin-yi-bu-hua-jian-2" class="header-anchor"></a></h4><p><img src="./rotateLm2.png"></p>
+<p><img src="./rotateLm3.png"></p>
+<p><img src="./rotateInference2.png"></p>
+<p><img src="./rotateEq4.png"></p>
+<p>把上述公式中的四元数q展开成矩阵形式之后，发现可以把矩阵压缩至3*3维度</p>
+<p><img src="./rotateEq5.png"></p>
+<h4><span id="tong-guo-xuan-zhuan-si-yuan-shu-q-dao-tui-xuan-zhuan-zhou-he-xuan-zhuan-jiao">通过旋转四元数q倒退旋转轴和旋转角</span><a href="#tong-guo-xuan-zhuan-si-yuan-shu-q-dao-tui-xuan-zhuan-zhou-he-xuan-zhuan-jiao" class="header-anchor"></a></h4><p><img src="./toAxisAngle.png"></p>
+<h4><span id="si-yuan-shu-xuan-zhuan-de-fu-he-lian-xu-xuan-zhuan">四元数旋转的复合（连续旋转）</span><a href="#si-yuan-shu-xuan-zhuan-de-fu-he-lian-xu-xuan-zhuan" class="header-anchor"></a></h4><p><img src="./rotateEq6.png"></p>
+<h4><span id="si-yuan-shu-jian-yi-cha-zhi-gong-shi-slerp-de-yi-chong-miao-shu-fang-shi">四元数简易插值公式 (Slerp的一种描述方式)</span><a href="#si-yuan-shu-jian-yi-cha-zhi-gong-shi-slerp-de-yi-chong-miao-shu-fang-shi" class="header-anchor"></a></h4><p><img src="./rotateLerp1.png"></p>
+<p><img src="./rotateLerp2.png"></p>
+<h3><span id="si-yuan-shu-cha-zhi-jin-jie">四元数插值进阶</span><a href="#si-yuan-shu-cha-zhi-jin-jie" class="header-anchor"></a></h3><p>四元数每旋转alpha角度，在实际的3维上会旋转2*alpha角度</p>
+<p><img src="./rotateLerp3.png"></p>
+<h4><span id="lerp-xian-xing-cha-zhi">Lerp 线性插值</span><a href="#lerp-xian-xing-cha-zhi" class="header-anchor"></a></h4><p>直接利用四元数的加法规则进行插值</p>
+<p><img src="./rotateLerp4.png"></p>
+<h4><span id="nlerp-dui-xian-xing-cha-zhi-de-zheng-ze-hua">Nlerp 对线性插值的正则化</span><a href="#nlerp-dui-xian-xing-cha-zhi-de-zheng-ze-hua" class="header-anchor"></a></h4><p><img src="./rotateLerp5.png"></p>
+<h4><span id="slerp-dui-si-yuan-shu-nei-de-jiao-du-jin-xing-cha-zhi">Slerp 对四元数内的角度进行插值</span><a href="#slerp-dui-si-yuan-shu-nei-de-jiao-du-jin-xing-cha-zhi" class="header-anchor"></a></h4><p><img src="./rotateLerp6.png"></p>
+<p>​    如果要插值的角度比较小的话，Nlerp 其实相对于Slerp 的误差并没有那么大．为了提高效率，我们经常会使用Nlerp 来代替Slerp．我们也能用一些数值分析的方法来近似并优化四元数的Slerp．你可以在一些图形引擎的源代码中找到一些例子．<br>​    除了效率问题之外，我们在实现Slerp 时要注意，如果单位四元数之间的夹角θ非常小，那么sin(θ) 可能会由于浮点数的误差被近似为0.0，从而导致除以0 的错误．所以，我们在实施Slerp 之前，需要检查两个四元数的夹角是否过小（或者完全相同）．一旦发现这种问题，我们就必须改用Nlerp 对两个四元数进行插值，这时候Nlerp 的误差非常小所以基本不会与真正的Slerp 有什么区别。</p>
+<h4><span id="cha-zhi-xu-yao-zhu-yi-de-xi-jie-xuan-ze-zui-duan-de-cha-zhi-lu-jing">插值需要注意的细节（选择最短的插值路径）</span><a href="#cha-zhi-xu-yao-zhu-yi-de-xi-jie-xuan-ze-zui-duan-de-cha-zhi-lu-jing" class="header-anchor"></a></h4><p>这也就告诉我们，在对两个单位四元数进行插值之前，我们需要先检测𝑞0 与 𝑞1 之间是否是钝角，即检测它们点积的结果 𝑞0 · 𝑞1 是否为负数．如果<br>𝑞0 ·𝑞1 &lt;0，那么我们就反转其中的一个四元数，比如说将𝑞1 改为−𝑞1，并使用𝑞0 与−𝑞1 之间新的夹角来进行插值，这样才能保证插值的路径是最短的。</p>
+<h3><span id="squad-fang-fa-waiting-to-be-done">Squad方法（waiting to be done）</span><a href="#squad-fang-fa-waiting-to-be-done" class="header-anchor"></a></h3>
+</div> 
+
+<script>
+    window.onload = detectors();
+</script>
+    <div class="post-footer">
+    <div class="h-line-primary"></div>
+    <nav class="post-nav">
+        <div class="prev-item">
+           
+                <div class="icon arrow-left"></div>
+                <div class="post-link">
+                    <a href="/2022/08/25/2-Simulation-PBD/">Prev</a>
+                </div>
+            
+        </div>
+        <div class="next-item">
+            
+        </div>
+    </nav>
+</div>
+
+    
+      <div class="post-comment">
+
+     
+
+     
+    
+    
+
+</div>
+     
+  
+</article>
+        </div>
+      </div>
+      
+      <div class="footer">
+    <div class="flex-container">
+        <div class="footer-text">
+            
+            
+                
+        </div>
+    </div>
+</div>
+
+    </div>
+
+    
+    
+
+  </body>
+</html>

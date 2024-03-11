@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="Lee">
+
+
+
+
+
+
+
+<title>Piccolo | Lee</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;700&family=Roboto+Mono&display=swap');
+</style>
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/frame.js"></script>
+    
+
+
+
+
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+
+
+
+
+
+
+  <meta name="generator" content="Hexo 5.4.2"></head>
+  <body>
+    <div class="mask-border">
+    </div>
+
+    <div class="wrapper">
+
+      <div class="header">
+  <div class="flex-container">
+    <div class="header-inner">
+      <div class="site-brand-container">
+        <a href="/">
+          
+            Lee&#39;s Blog
+          
+        </a>
+      </div>
+      <div id="menu-btn" class="menu-btn" onclick="toggleMenu()">
+        Menu
+      </div>
+      <nav class="site-nav">
+        <ul class="menu-list">
+          
+            
+              <li class="menu-item">
+                <a href="/">Home</a>
+              </li> 
+                   
+          
+            
+              <li class="menu-item">
+                <a href="/categories/gallery/">Blog</a>
+              </li> 
+                   
+          
+            
+              <li class="menu-item">
+                <a href="/archives/">Archive</a>
+              </li> 
+                   
+          
+            
+              <li class="menu-item">
+                <a href="/tag/">Tag</a>
+              </li> 
+                   
+          
+            
+              <li class="menu-item">
+                <a href="/about/">About</a>
+              </li> 
+                   
+          
+          
+        </ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main">
+        <div class="flex-container">
+          <article id="post">
+
+  
+    <div class="post-head">
+    <div class="post-info">
+        <div class="tag-list">
+            
+                
+                    <span class="post-tag">
+                        <a href="/tags/Game-Engine/">
+                            Game Engine
+                        </a>
+                    </span>    
+                           
+            
+        </div>
+        <div class="post-title">
+            
+            
+                Piccolo
+            
+            
+        </div>
+        <span class="post-date">
+            Sep 3, 2022
+        </span>
+    </div>
+    <div class="post-img">
+        
+            <img src="/./images/11.jpg" alt="featured_image">
+              
+    </div>
+</div>
+    <div class="post-content">
+    <div class="toc">
+
+<!-- toc -->
+
+<ul>
+<li><a href="#piccolo-yin-qing-yuan-ma-li-jie">Piccolo引擎源码理解</a><ul>
+<li><a href="#engine-cpp-h">engine.cpp/.h</a></li>
+<li><a href="#gong-neng-ceng-function">功能层 function</a></li>
+</ul>
+</li>
+</ul>
+<!-- tocstop -->
+
+</div>
+
+<h2><span id="piccolo-yin-qing-yuan-ma-li-jie">Piccolo引擎源码理解</span><a href="#piccolo-yin-qing-yuan-ma-li-jie" class="header-anchor"></a></h2><h3><span id="engine-cpp-h">engine.cpp/.h</span><a href="#engine-cpp-h" class="header-anchor"></a></h3><p>定义在<strong>namespace Piccolo</strong>中</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">PiccoloEngine</span> <span class="comment">//engine文件主要定义了PiccoloEngine这个类的参数和行为</span></span><br><span class="line">.h <span class="comment">//声明参数和函数</span></span><br><span class="line">.<span class="built_in">cpp</span> </span><br><span class="line">(<span class="number">1</span>)PiccoloEngine::startEngine <span class="comment">//开始运行，修改上下文执行编译文件，挂接反射</span></span><br><span class="line">(<span class="number">2</span>)PiccoloEngine::shutdownEngine <span class="comment">//停止运行 ，修改上下文，解除反射 </span></span><br><span class="line"> </span><br><span class="line">(<span class="number">3</span>)PiccoloEngine::<span class="built_in">run</span>() <span class="comment">//只要window不管，无限循环calculateDeltaTime，tickOneFrame函数</span></span><br><span class="line">	(<span class="number">4</span>)PiccoloEngine::calculateDeltaTime <span class="comment">//计算每个引擎tick消耗的实际时间</span></span><br><span class="line">	(<span class="number">5</span>)PiccoloEngine::tickOneFrame <span class="comment">//用calculateDeltaTime计算的时间来迭代引擎内的渲染和逻辑</span></span><br><span class="line">    	(<span class="number">6</span>)PiccoloEngine::logicalTick <span class="comment">//通过全局上下文，获取m_world_manager 和 input_system 进行tick</span></span><br><span class="line">    	(<span class="number">7</span>)通过全局上下文，交换逻辑和渲染data的上下文</span><br><span class="line">    	(<span class="number">8</span>)PiccoloEngine::rendererTick <span class="comment">//通过全局上下文，获取渲染系统tick一次</span></span><br><span class="line">        (<span class="number">9</span>)通过全局上下文，更新window系统的内容</span><br></pre></td></tr></table></figure>
+
+
+
+<h3><span id="gong-neng-ceng-function">功能层 function</span><a href="#gong-neng-ceng-function" class="header-anchor"></a></h3><h4><span id="te-bie-ba-shang-xia-wen-zi-xi-tong-ti-chu-lai-jiang-global-mu-lu-li-jie-shang-xia-wen-global-context-cpp-h">特别把上下文子系统提出来讲：global目录——理解上下文global_context.cpp/.h</span><a href="#te-bie-ba-shang-xia-wen-zi-xi-tong-ti-chu-lai-jiang-global-mu-lu-li-jie-shang-xia-wen-global-context-cpp-h" class="header-anchor"></a></h4><p>为什么要设计上下文？ 上下文包含的引擎的各个系统，是一种封装，引擎只需要调用上下文的系统的函数即可，主要负责所有系统的启动和停止。（更多好处有待体会），因为我们在引擎的顶层文件是<strong>通过上下文系统</strong>来调用不同系统的，所以先把上下文子系统提出来讲。</p>
+<p>定义在<strong>namespace Piccolo</strong>中</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">RuntimeGlobalContext</span> <span class="comment">//global_context文件主要定义了RuntimeGlobalContext这个类的参数和行为</span></span><br><span class="line">    </span><br><span class="line">.h <span class="comment">//声明了引擎不同层次的系统，每个系统在class类中用一个shared_ptr指向</span></span><br><span class="line">函数也只有两个</span><br><span class="line">(<span class="number">1</span>) RuntimeGlobalContext::<span class="built_in">startSystems</span></span><br><span class="line">(<span class="number">2</span>) RuntimeGlobalContext::shutdownSystems</span><br><span class="line"></span><br><span class="line">.cpp</span><br><span class="line"><span class="comment">//简单来说就是启动系统和关闭系统，没太多可看的</span></span><br></pre></td></tr></table></figure>
+
+<h4><span id="1-kuang-jia-framework">（1）框架 framework</span><a href="#1-kuang-jia-framework" class="header-anchor"></a></h4><p><img src="./1.png"></p>
+<h4><span id="2-zi-xi-tong">（2）子系统</span><a href="#2-zi-xi-tong" class="header-anchor"></a></h4><p><img src="./2.png"></p>
+<h5><span id="animation-mu-lu-li-jie-dong-hua-xi-tong">animation目录：理解动画系统</span><a href="#animation-mu-lu-li-jie-dong-hua-xi-tong" class="header-anchor"></a></h5>
+</div> 
+
+<script>
+    window.onload = detectors();
+</script>
+    <div class="post-footer">
+    <div class="h-line-primary"></div>
+    <nav class="post-nav">
+        <div class="prev-item">
+           
+                <div class="icon arrow-left"></div>
+                <div class="post-link">
+                    <a href="/2022/10/17/6-Render-UE-RHI/">Prev</a>
+                </div>
+            
+        </div>
+        <div class="next-item">
+            
+                <div class="icon arrow-right"></div>
+                <div class="post-link">
+                  <a href="/2022/09/01/9-Novel-the-Rebel/">Next</a>  
+                </div>  
+            
+        </div>
+    </nav>
+</div>
+
+    
+      <div class="post-comment">
+
+     
+
+     
+    
+    
+
+</div>
+     
+  
+</article>
+        </div>
+      </div>
+      
+      <div class="footer">
+    <div class="flex-container">
+        <div class="footer-text">
+            
+            
+                
+        </div>
+    </div>
+</div>
+
+    </div>
+
+    
+    
+
+  </body>
+</html>

@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="Lee">
+
+
+
+
+
+
+
+<title>UE Intro Notes | Lee</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;700&family=Roboto+Mono&display=swap');
+</style>
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/frame.js"></script>
+    
+
+
+
+
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+
+
+
+
+
+
+  <meta name="generator" content="Hexo 5.4.2"></head>
+  <body>
+    <div class="mask-border">
+    </div>
+
+    <div class="wrapper">
+
+      <div class="header">
+  <div class="flex-container">
+    <div class="header-inner">
+      <div class="site-brand-container">
+        <a href="/">
+          
+            Lee&#39;s Blog
+          
+        </a>
+      </div>
+      <div id="menu-btn" class="menu-btn" onclick="toggleMenu()">
+        Menu
+      </div>
+      <nav class="site-nav">
+        <ul class="menu-list">
+          
+            
+              <li class="menu-item">
+                <a href="/">Home</a>
+              </li> 
+                   
+          
+            
+              <li class="menu-item">
+                <a href="/categories/gallery/">Blog</a>
+              </li> 
+                   
+          
+            
+              <li class="menu-item">
+                <a href="/archives/">Archive</a>
+              </li> 
+                   
+          
+            
+              <li class="menu-item">
+                <a href="/tag/">Tag</a>
+              </li> 
+                   
+          
+            
+              <li class="menu-item">
+                <a href="/about/">About</a>
+              </li> 
+                   
+          
+          
+        </ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main">
+        <div class="flex-container">
+          <article id="post">
+
+  
+    <div class="post-head">
+    <div class="post-info">
+        <div class="tag-list">
+            
+                
+                    <span class="post-tag">
+                        <a href="/tags/Game/">
+                            Game
+                        </a>
+                    </span>    
+                           
+            
+        </div>
+        <div class="post-title">
+            
+            
+                UE Intro Notes
+            
+            
+        </div>
+        <span class="post-date">
+            Aug 26, 2022
+        </span>
+    </div>
+    <div class="post-img">
+        
+            <img src="/./images/5.jpg" alt="featured_image">
+              
+    </div>
+</div>
+    <div class="post-content">
+    <div class="toc">
+
+<!-- toc -->
+
+<ul>
+<li><a href="#zhu-jiao-chuang-jian">主角创建</a></li>
+<li><a href="#lan-tu-jiao-ben-xiao-qiu-yi-dong-kong-zhi">蓝图脚本-小球移动控制</a></li>
+<li><a href="#shi-yong-springarm-jin-xing-xiao-qiu-de-gen-zong">使用SpringArm进行小球的跟踪</a></li>
+<li><a href="#lan-tu-bian-liang">蓝图变量</a></li>
+<li><a href="#zheng-li-lan-tu-han-shu-hong-lan-tu-hong-ku">整理蓝图-函数/宏/蓝图宏库</a></li>
+</ul>
+<!-- tocstop -->
+
+</div>
+
+<h3><span id="zhu-jiao-chuang-jian">主角创建</span><a href="#zhu-jiao-chuang-jian" class="header-anchor"></a></h3><p>UE4 自动生成玩家控制的Player为DefalutPawn， 由引擎自动生成的PlayerController自动控制</p>
+<p>通过创建GameMode类调整Default Pawn Class（就是玩家应该操控的是哪个物体）, 通过Project Setting设置游戏应用这个GameMode。然后使用PlayerStart物体，指定来生成被控制的Pawn物体的位置 </p>
+<h3><span id="lan-tu-jiao-ben-xiao-qiu-yi-dong-kong-zhi">蓝图脚本-小球移动控制</span><a href="#lan-tu-jiao-ben-xiao-qiu-yi-dong-kong-zhi" class="header-anchor"></a></h3><p>创建轴事件，通过不断触发的事件去激活对应的函数</p>
+<h3><span id="shi-yong-springarm-jin-xing-xiao-qiu-de-gen-zong">使用SpringArm进行小球的跟踪</span><a href="#shi-yong-springarm-jin-xing-xiao-qiu-de-gen-zong" class="header-anchor"></a></h3><p>注意连线之后设置摄像机观察角度为绝对角度，否则随着小球旋转摄像机也会旋转。</p>
+<p>同时把摄像机和小球之间的障碍物检测（camer collision)关掉。否则相机在有障碍物的时候会自动前移</p>
+<h3><span id="lan-tu-bian-liang">蓝图变量</span><a href="#lan-tu-bian-liang" class="header-anchor"></a></h3><p>可以通过把magic number转换成蓝图变量，然后暴露蓝图变量，可以在运行游戏的同时修改蓝图变量测试。同样可以通过变量限制magic number的取值</p>
+<p>变量可以通过设置category类进行分类，暴露蓝图变量的时候所有相同category的属性会放在一个栏目下面</p>
+<p>蓝图注释方法：框柱注释部分，按C键</p>
+<h3><span id="zheng-li-lan-tu-han-shu-hong-lan-tu-hong-ku">整理蓝图-函数/宏/蓝图宏库</span><a href="#zheng-li-lan-tu-han-shu-hong-lan-tu-hong-ku" class="header-anchor"></a></h3><p>函数：把流程图收缩为函数（其他不常用方法：把多个节点collapse nodes收缩为一个节点）</p>
+<p>宏：优势是可以返回多个执行分支，函数不能添加执行的分支</p>
+<p>注意宏只能在本蓝图内被调用，函数有可能可以通过引用蓝图调用</p>
+<p>蓝图宏库：所有的蓝图都可以调用蓝图宏库的方法</p>
+
+</div> 
+
+<script>
+    window.onload = detectors();
+</script>
+    <div class="post-footer">
+    <div class="h-line-primary"></div>
+    <nav class="post-nav">
+        <div class="prev-item">
+           
+                <div class="icon arrow-left"></div>
+                <div class="post-link">
+                    <a href="/2022/08/26/25-Tool-Markdown/">Prev</a>
+                </div>
+            
+        </div>
+        <div class="next-item">
+            
+                <div class="icon arrow-right"></div>
+                <div class="post-link">
+                  <a href="/2022/08/26/5-Language-Lua/">Next</a>  
+                </div>  
+            
+        </div>
+    </nav>
+</div>
+
+    
+      <div class="post-comment">
+
+     
+
+     
+    
+    
+
+</div>
+     
+  
+</article>
+        </div>
+      </div>
+      
+      <div class="footer">
+    <div class="flex-container">
+        <div class="footer-text">
+            
+            
+                
+        </div>
+    </div>
+</div>
+
+    </div>
+
+    
+    
+
+  </body>
+</html>

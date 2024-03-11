@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="Lee">
+
+
+
+
+
+
+
+<title>OpenGL Intro | Lee</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;700&family=Roboto+Mono&display=swap');
+</style>
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/frame.js"></script>
+    
+
+
+
+
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+
+
+
+
+
+
+  <meta name="generator" content="Hexo 5.4.2"></head>
+  <body>
+    <div class="mask-border">
+    </div>
+
+    <div class="wrapper">
+
+      <div class="header">
+  <div class="flex-container">
+    <div class="header-inner">
+      <div class="site-brand-container">
+        <a href="/">
+          
+            Lee&#39;s Blog
+          
+        </a>
+      </div>
+      <div id="menu-btn" class="menu-btn" onclick="toggleMenu()">
+        Menu
+      </div>
+      <nav class="site-nav">
+        <ul class="menu-list">
+          
+            
+              <li class="menu-item">
+                <a href="/">Home</a>
+              </li> 
+                   
+          
+            
+              <li class="menu-item">
+                <a href="/categories/gallery/">Blog</a>
+              </li> 
+                   
+          
+            
+              <li class="menu-item">
+                <a href="/archives/">Archive</a>
+              </li> 
+                   
+          
+            
+              <li class="menu-item">
+                <a href="/tag/">Tag</a>
+              </li> 
+                   
+          
+            
+              <li class="menu-item">
+                <a href="/about/">About</a>
+              </li> 
+                   
+          
+          
+        </ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main">
+        <div class="flex-container">
+          <article id="post">
+
+  
+    <div class="post-head">
+    <div class="post-info">
+        <div class="tag-list">
+            
+                
+                    <span class="post-tag">
+                        <a href="/tags/Render/">
+                            Render
+                        </a>
+                    </span>    
+                
+                    <span class="post-tag">
+                        <a href="/tags/OpenGL/">
+                            OpenGL
+                        </a>
+                    </span>    
+                           
+            
+        </div>
+        <div class="post-title">
+            
+            
+                OpenGL Intro
+            
+            
+        </div>
+        <span class="post-date">
+            Aug 26, 2022
+        </span>
+    </div>
+    <div class="post-img">
+        
+            <img src="/./images/7.jpg" alt="featured_image">
+              
+    </div>
+</div>
+    <div class="post-content">
+    <div class="toc">
+
+<!-- toc -->
+
+<ul>
+<li><a href="#opengl-learning-ji-chu-ru-men-0">OpenGL_learning基础入门(0)</a><ul>
+<li><a href="#ji-chu-gai-nian">基础概念</a></li>
+<li><a href="#chuang-kou">窗口</a></li>
+<li><a href="#san-jiao-xing">三角形</a><ul>
+<li><a href="#ji-chu-gai-nian-1">基础概念</a></li>
+<li><a href="#opengl-xuan-ran-guan-xian-guo-cheng">OpenGL渲染管线过程</a></li>
+<li><a href="#ding-dian-shu-ru">顶点输入</a></li>
+<li><a href="#ding-dian-zhao-se-qi">顶点着色器</a></li>
+<li><a href="#pian-duan-zhao-se-qi">片段着色器</a></li>
+<li><a href="#zhao-se-qi-cheng-xu">着色器程序</a></li>
+<li><a href="#lian-jie-ding-dian-shu-xing">链接顶点属性</a></li>
+<li><a href="#ding-dian-shu-zu-dui-xiang-vao">顶点数组对象<code>VAO</code></a></li>
+<li><a href="#suo-yin-huan-chong-dui-xiang-ebo-ibo">索引缓冲对象<code>EBO/IBO</code></a></li>
+</ul>
+</li>
+<li><a href="#zhao-se-qi">着色器</a><ul>
+<li><a href="#glsl">GLSL</a></li>
+<li><a href="#glsl-te-shu-shu-ju-lei-xing">GLSL特殊数据类型</a></li>
+<li><a href="#shu-ru-yu-shu-chu">输入与输出</a></li>
+<li><a href="#uniform">Uniform</a></li>
+<li><a href="#zai-ding-dian-zhao-se-qi-zhong-shu-ru-zuo-biao-he-yan-se">在顶点着色器中输入坐标和颜色</a></li>
+<li><a href="#zhao-se-qi-lei">着色器类</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<!-- tocstop -->
+
+</div>
+
+<h1><span id="opengl-learning-ji-chu-ru-men-0">OpenGL_learning基础入门(0)</span><a href="#opengl-learning-ji-chu-ru-men-0" class="header-anchor"></a></h1><hr>
+<h2><span id="ji-chu-gai-nian">基础概念</span><a href="#ji-chu-gai-nian" class="header-anchor"></a></h2><ul>
+<li><strong>核心模式与立即渲染模式</strong></li>
+</ul>
+<p>OpenGL3.2开始，规范文档开始废弃立即渲染模式，并鼓励开发者在OpenGL的核心模式<code>Core-profile</code>下进行开发，这个分支的规范完全移除了旧的特性。</p>
+<p>立即渲染模式从OpenGL实际运作中抽象掉了很多细节，因此它在易于学习的同时，也很难让人去把握OpenGL具体是如何运作的。现代函数要求使用者真正理解OpenGL和图形编程，它有一些难度，然而提供了更多的灵活性，更高的效率，更重要的是可以更深入的理解图形编程。</p>
+<ul>
+<li><strong>扩展</strong></li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(GL_ARB_extension_name)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// 使用硬件支持的全新的现代特性</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// 不支持此扩展: 用旧的方式去做</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>状态机</strong></li>
+</ul>
+<p>OpenGL自身是一个巨大的状态机<code>State Machine</code>：一系列的变量描述OpenGL此刻应当如何运行。OpenGL的状态通常被称为OpenGL<strong>上下文</strong><code>Context</code>。我们通常使用如下途径去更改OpenGL状态：设置选项，操作缓冲。最后，我们使用当前OpenGL上下文来渲染。</p>
+<p>当使用OpenGL的时候，我们会遇到一些<strong>状态设置函数</strong><code>State-changing Function</code>，这类函数将会改变上下文。以及<strong>状态使用函数</strong><code>State-using Function</code>，这类函数会根据当前OpenGL的状态执行一些操作。只要你记住OpenGL本质上是个大状态机，就能更容易理解它的大部分特性。</p>
+<ul>
+<li><strong>对象</strong></li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 创建对象</span></span><br><span class="line"><span class="type">unsigned</span> <span class="type">int</span> objectId = <span class="number">0</span>;</span><br><span class="line"><span class="built_in">glGenObject</span>(<span class="number">1</span>, &amp;objectId);</span><br><span class="line"><span class="comment">// 绑定对象至上下文</span></span><br><span class="line"><span class="built_in">glBindObject</span>(GL_WINDOW_TARGET, objectId);</span><br><span class="line"><span class="comment">// 设置当前绑定到 GL_WINDOW_TARGET 的对象的一些选项</span></span><br><span class="line"><span class="built_in">glSetObjectOption</span>(GL_WINDOW_TARGET, GL_OPTION_WINDOW_WIDTH, <span class="number">800</span>);</span><br><span class="line"><span class="built_in">glSetObjectOption</span>(GL_WINDOW_TARGET, GL_OPTION_WINDOW_HEIGHT, <span class="number">600</span>);</span><br><span class="line"><span class="comment">// 将上下文对象设回默认</span></span><br><span class="line"><span class="built_in">glBindObject</span>(GL_WINDOW_TARGET, <span class="number">0</span>);</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2><span id="chuang-kou">窗口</span><a href="#chuang-kou" class="header-anchor"></a></h2><ul>
+<li>GLFW</li>
+</ul>
+<p>GLFW是一个专门针对OpenGL的C语言库，它提供了一些渲染物体所需的最低限度的接口。它允许用户创建OpenGL上下文、定义窗口参数以及处理用户输入，对我们来说这就够了。</p>
+<ul>
+<li>GLAD</li>
+</ul>
+<p>由于OpenGL驱动版本众多，它大多数函数的位置都无法在编译时确定下来，需要在运行时查询。所以任务就落在了开发者身上，开发者需要在运行时获取函数地址并将其保存在一个函数指针中供以后使用。幸运的是，有些库能简化此过程，其中GLAD是目前最新，也是最流行的库。</p>
+<ul>
+<li>渲染循环<code>Render Loop</code></li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span>(!<span class="built_in">glfwWindowShouldClose</span>(window))</span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">glfwSwapBuffers</span>(window);</span><br><span class="line">    <span class="built_in">glfwPollEvents</span>();    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="./0.png"></p>
+<hr>
+<h2><span id="san-jiao-xing">三角形</span><a href="#san-jiao-xing" class="header-anchor"></a></h2><h3><span id="ji-chu-gai-nian">基础概念</span><a href="#ji-chu-gai-nian" class="header-anchor"></a></h3><ul>
+<li><p><strong>图元</strong>：为了让OpenGL知道我们的坐标和颜色值构成的到底是什么，OpenGL需要你去指定这些数据所表示的渲染类型。我们是希望把这些数据渲染成一系列的点？一系列的三角形？还是仅仅是一个长长的线？做出的这些提示叫做**图元<code>Primitive</code>**，任何一个绘制指令的调用都将把图元传递给OpenGL。这是其中的几个：GL_POINTS、GL_TRIANGLES、GL_LINE_STRIP。</p>
+</li>
+<li><p>OpenGL中的一个<strong>片段</strong>是OpenGL渲染一个像素所需的所有数据。</p>
+</li>
+</ul>
+<h3><span id="opengl-xuan-ran-guan-xian-guo-cheng">OpenGL渲染管线过程</span><a href="#opengl-xuan-ran-guan-xian-guo-cheng" class="header-anchor"></a></h3><p><img src="./1.png"></p>
+<h3><span id="ding-dian-shu-ru">顶点输入</span><a href="#ding-dian-shu-ru" class="header-anchor"></a></h3><p>**标准化设备坐标<code>Normalized Device Coordinates, NDC</code>**：一旦你的顶点坐标已经在顶点着色器中处理过，它们就应该是标准化设备坐标了，标准化设备坐标是一个x、y和z值在-1.0到1.0的一小段空间。</p>
+<h3><span id="ding-dian-zhao-se-qi">顶点着色器</span><a href="#ding-dian-zhao-se-qi" class="header-anchor"></a></h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 简易着色器</span></span><br><span class="line"><span class="meta">#version 330 core <span class="comment">// 版本</span></span></span><br><span class="line"><span class="built_in">layout</span> (location = <span class="number">0</span>) in vec3 aPos;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    gl_Position = <span class="built_in">vec4</span>(aPos.x, aPos.y, aPos.z, <span class="number">1.0</span>);</span><br><span class="line">    <span class="comment">//为了设置顶点着色器的输出，我们必须把位置数据赋值给预定义的gl_Position变量。</span></span><br><span class="line">    <span class="comment">//它在幕后是vec4类型的。</span></span><br><span class="line">    <span class="comment">//在main函数的最后，我们将gl_Position设置的值会成为该顶点着色器的输出。</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3><span id="pian-duan-zhao-se-qi">片段着色器</span><a href="#pian-duan-zhao-se-qi" class="header-anchor"></a></h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#version 330 core</span></span><br><span class="line">out vec4 FragColor;<span class="comment">//声明输出变量可以使用out关键字</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    FragColor = <span class="built_in">vec4</span>(<span class="number">1.0f</span>, <span class="number">0.5f</span>, <span class="number">0.2f</span>, <span class="number">1.0f</span>);</span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure>
+
+<h3><span id="zhao-se-qi-cheng-xu">着色器程序</span><a href="#zhao-se-qi-cheng-xu" class="header-anchor"></a></h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//创建着色器程序</span></span><br><span class="line"><span class="type">unsigned</span> <span class="type">int</span> shaderProgram;</span><br><span class="line">shaderProgram = <span class="built_in">glCreateProgram</span>();</span><br><span class="line"><span class="comment">//链接着色器程序</span></span><br><span class="line"><span class="built_in">glAttachShader</span>(shaderProgram, vertexShader);</span><br><span class="line"><span class="built_in">glAttachShader</span>(shaderProgram, fragmentShader);</span><br><span class="line"><span class="built_in">glLinkProgram</span>(shaderProgram);</span><br><span class="line"><span class="comment">//激活程序</span></span><br><span class="line"><span class="built_in">glUseProgram</span>(shaderProgram);</span><br><span class="line"><span class="comment">//删除程序</span></span><br><span class="line"><span class="built_in">glDeleteShader</span>(vertexShader);</span><br><span class="line"><span class="built_in">glDeleteShader</span>(fragmentShader);</span><br></pre></td></tr></table></figure>
+
+<h3><span id="lian-jie-ding-dian-shu-xing">链接顶点属性</span><a href="#lian-jie-ding-dian-shu-xing" class="header-anchor"></a></h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);</span><br><span class="line">glEnableVertexAttribArray(0);</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>OpenGL绘制物体流程</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 0. 复制顶点数组到缓冲中供OpenGL使用</span></span><br><span class="line"><span class="built_in">glBindBuffer</span>(GL_ARRAY_BUFFER, VBO);</span><br><span class="line"><span class="built_in">glBufferData</span>(GL_ARRAY_BUFFER, <span class="built_in">sizeof</span>(vertices), vertices, GL_STATIC_DRAW);</span><br><span class="line"><span class="comment">// 1. 设置顶点属性指针,这一步两个函数中的第一个0都表示顶点属性的位置值</span></span><br><span class="line"><span class="comment">//在顶点着色器中会被定义好</span></span><br><span class="line"><span class="built_in">glVertexAttribPointer</span>(<span class="number">0</span>, <span class="number">3</span>, GL_FLOAT, GL_FALSE, <span class="number">3</span> * <span class="built_in">sizeof</span>(<span class="type">float</span>), (<span class="type">void</span>*)<span class="number">0</span>);</span><br><span class="line"><span class="built_in">glEnableVertexAttribArray</span>(<span class="number">0</span>);</span><br><span class="line"><span class="comment">// 2. 当我们渲染一个物体时要使用着色器程序</span></span><br><span class="line"><span class="built_in">glUseProgram</span>(shaderProgram);</span><br><span class="line"><span class="comment">// 3. 绘制物体</span></span><br><span class="line"><span class="built_in">someOpenGLFunctionThatDrawsOurTriangle</span>();</span><br></pre></td></tr></table></figure>
+
+<h3><span id="ding-dian-shu-zu-dui-xiang-vao">顶点数组对象<code>VAO</code></span><a href="#ding-dian-shu-zu-dui-xiang-vao" class="header-anchor"></a></h3><p>顶点数组对象<code>Vertex Array Object, VAO</code>可以像顶点缓冲对象那样被绑定，任何随后的顶点属性调用都会储存在这个VAO中。这样的好处就是，当配置顶点属性指针时，你只需要将那些调用执行一次，之后再绘制物体的时候只需要绑定相应的VAO就行了。这使在不同顶点数据和属性配置之间切换变得非常简单，只需要绑定不同的VAO就行了。刚刚设置的所有状态都将存储在VAO中</p>
+<p><code>VAO和VBO的区别？</code>VAO是一个保存了所有顶点数据属性的状态结合，它存储了顶点数据的格式以及顶点数据所需的VBO对象的引用。VAO本身并没有存储顶点的相关属性数据，这些信息是存储在VBO中的。</p>
+<p><strong>OpenGL的核心模式要求我们使用VAO，所以它知道该如何处理我们的顶点输入。如果我们绑定VAO失败，OpenGL会拒绝绘制任何东西。</strong></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ..:: 初始化代码（只运行一次 (除非你的物体频繁改变)） :: ..</span></span><br><span class="line"><span class="comment">// 1. 绑定VAO</span></span><br><span class="line"><span class="built_in">glBindVertexArray</span>(VAO);</span><br><span class="line"><span class="comment">// 2. 把顶点数组复制到缓冲中供OpenGL使用</span></span><br><span class="line"><span class="built_in">glBindBuffer</span>(GL_ARRAY_BUFFER, VBO);</span><br><span class="line"><span class="built_in">glBufferData</span>(GL_ARRAY_BUFFER, <span class="built_in">sizeof</span>(vertices), vertices, GL_STATIC_DRAW);</span><br><span class="line"><span class="comment">// 3. 设置顶点属性指针</span></span><br><span class="line"><span class="built_in">glVertexAttribPointer</span>(<span class="number">0</span>, <span class="number">3</span>, GL_FLOAT, GL_FALSE, <span class="number">3</span> * <span class="built_in">sizeof</span>(<span class="type">float</span>), (<span class="type">void</span>*)<span class="number">0</span>);</span><br><span class="line"><span class="built_in">glEnableVertexAttribArray</span>(<span class="number">0</span>);</span><br><span class="line"></span><br><span class="line">[...]</span><br><span class="line"></span><br><span class="line"><span class="comment">// ..:: 绘制代码（渲染循环中） :: ..</span></span><br><span class="line"><span class="comment">// 4. 绘制物体</span></span><br><span class="line"><span class="built_in">glUseProgram</span>(shaderProgram);</span><br><span class="line"><span class="built_in">glBindVertexArray</span>(VAO);</span><br><span class="line"><span class="built_in">someOpenGLFunctionThatDrawsOurTriangle</span>();</span><br></pre></td></tr></table></figure>
+
+<h3><span id="suo-yin-huan-chong-dui-xiang-ebo-ibo">索引缓冲对象<code>EBO/IBO</code></span><a href="#suo-yin-huan-chong-dui-xiang-ebo-ibo" class="header-anchor"></a></h3><p>通过EBO，对于相同的顶点不用重复存储两次，而是使用索引来访问相同的节点。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">float</span> vertices[] = &#123;</span><br><span class="line">    <span class="number">0.5f</span>, <span class="number">0.5f</span>, <span class="number">0.0f</span>,   <span class="comment">// 右上角</span></span><br><span class="line">    <span class="number">0.5f</span>, <span class="number">-0.5f</span>, <span class="number">0.0f</span>,  <span class="comment">// 右下角</span></span><br><span class="line">    <span class="number">-0.5f</span>, <span class="number">-0.5f</span>, <span class="number">0.0f</span>, <span class="comment">// 左下角</span></span><br><span class="line">    <span class="number">-0.5f</span>, <span class="number">0.5f</span>, <span class="number">0.0f</span>   <span class="comment">// 左上角</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="type">unsigned</span> <span class="type">int</span> indices[] = &#123; <span class="comment">// 注意索引从0开始! </span></span><br><span class="line">    <span class="number">0</span>, <span class="number">1</span>, <span class="number">3</span>, <span class="comment">// 第一个三角形</span></span><br><span class="line">    <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>  <span class="comment">// 第二个三角形</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p><strong>当目标是GL_ELEMENT_ARRAY_BUFFER的时候，VAO会储存glBindBuffer的函数调用。这也意味着它也会储存解绑调用，所以确保你没有在解绑VAO之前解绑索引数组缓冲，否则它就没有这个EBO配置了。</strong></p>
+<hr>
+<h2><span id="zhao-se-qi">着色器</span><a href="#zhao-se-qi" class="header-anchor"></a></h2><h3><span id="glsl">GLSL</span><a href="#glsl" class="header-anchor"></a></h3><p>着色器是使用一种叫GLSL的类C语言写成的。GLSL是为图形计算量身定制的，它包含一些针对向量和矩阵操作的有用特性。</p>
+<p>一个典型的着色器有下面的结构：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#version version_number</span></span><br><span class="line">in type in_variable_name;</span><br><span class="line">in type in_variable_name;</span><br><span class="line"></span><br><span class="line">out type out_variable_name;</span><br><span class="line"></span><br><span class="line">uniform type uniform_name;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="comment">// 处理输入并进行一些图形操作</span></span><br><span class="line">  ...</span><br><span class="line">  <span class="comment">// 输出处理过的结果到输出变量</span></span><br><span class="line">  out_variable_name = weird_stuff_we_processed;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3><span id="glsl-te-shu-shu-ju-lei-xing">GLSL特殊数据类型</span><a href="#glsl-te-shu-shu-ju-lei-xing" class="header-anchor"></a></h3><p><strong>向量</strong></p>
+<p><img src="./2.png"></p>
+<p><strong>向量重组</strong></p>
+<p><img src="./3.png"></p>
+<h3><span id="shu-ru-yu-shu-chu">输入与输出</span><a href="#shu-ru-yu-shu-chu" class="header-anchor"></a></h3><p>顶点着色器应该接收的是一种特殊形式的输入，否则就会效率低下。顶点着色器的输入特殊在，它从顶点数据中直接接收输入。为了定义顶点数据该如何管理，我们使用<code>location</code>这一元数据指定输入变量，这样我们才可以在CPU上配置顶点属性。</p>
+<p>另一个例外是片段着色器，它需要一个<code>vec4</code>颜色输出变量，因为片段着色器需要生成一个最终输出的颜色。<strong>如果你在片段着色器没有定义输出颜色，OpenGL会把你的物体渲染为黑色（或白色）。</strong></p>
+<h3><span id="uniform">Uniform</span><a href="#uniform" class="header-anchor"></a></h3><p>Uniform是一种从CPU中的应用向GPU中的着色器发送数据的方式，但uniform和顶点属性有些不同。<strong>首先</strong>，uniform是全局的(Global)。全局意味着uniform变量必须在每个着色器程序对象中都是独一无二的，而且它可以被着色器程序的任意着色器在任意阶段访问。<strong>第二</strong>，无论你把uniform值设置成什么，uniform会一直保存它们的数据，直到它们被重置或更新。</p>
+<p><strong>如果你声明了一个uniform却在GLSL代码中没用过，编译器会静默移除这个变量，导致最后编译出的版本中并不会包含它，这可能导致几个非常麻烦的错误，记住这点！</strong></p>
+<h3><span id="zai-ding-dian-zhao-se-qi-zhong-shu-ru-zuo-biao-he-yan-se">在顶点着色器中输入坐标和颜色</span><a href="#zai-ding-dian-zhao-se-qi-zhong-shu-ru-zuo-biao-he-yan-se" class="header-anchor"></a></h3><p>先在顶点着色器中定义<code>layout(location=x)</code>顶点属性的位置值<br><img src="./5.png"><br>重点是顶点属性指针的配置<br><img src="./4.png"></p>
+<h3><span id="zhao-se-qi-lei">着色器类</span><a href="#zhao-se-qi-lei" class="header-anchor"></a></h3><p>着色器类基本架构(函数没有展开写)</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">ifndef</span> SHADER_H</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> SHADER_H</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;glad/glad.h&gt;</span>; <span class="comment">// 包含glad来获取所有的必须OpenGL头文件</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;fstream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;sstream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Shader</span></span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="comment">// 程序ID</span></span><br><span class="line">    <span class="type">unsigned</span> <span class="type">int</span> ID;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 构造器读取并构建着色器</span></span><br><span class="line">    <span class="built_in">Shader</span>(<span class="type">const</span> <span class="type">char</span>* vertexPath, <span class="type">const</span> <span class="type">char</span>* fragmentPath);</span><br><span class="line">    <span class="comment">// 使用/激活程序</span></span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">use</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="comment">// uniform工具函数</span></span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">setBool</span><span class="params">(<span class="type">const</span> std::string &amp;name, <span class="type">bool</span> value)</span> <span class="type">const</span></span>;  </span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">setInt</span><span class="params">(<span class="type">const</span> std::string &amp;name, <span class="type">int</span> value)</span> <span class="type">const</span></span>;   </span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">setFloat</span><span class="params">(<span class="type">const</span> std::string &amp;name, <span class="type">float</span> value)</span> <span class="type">const</span></span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br></pre></td></tr></table></figure>
+</div> 
+
+<script>
+    window.onload = detectors();
+</script>
+    <div class="post-footer">
+    <div class="h-line-primary"></div>
+    <nav class="post-nav">
+        <div class="prev-item">
+           
+                <div class="icon arrow-left"></div>
+                <div class="post-link">
+                    <a href="/2022/08/26/6-Render-OpenGL-Texture/">Prev</a>
+                </div>
+            
+        </div>
+        <div class="next-item">
+            
+                <div class="icon arrow-right"></div>
+                <div class="post-link">
+                  <a href="/2022/08/26/25-Tool-Markdown/">Next</a>  
+                </div>  
+            
+        </div>
+    </nav>
+</div>
+
+    
+      <div class="post-comment">
+
+     
+
+     
+    
+    
+
+</div>
+     
+  
+</article>
+        </div>
+      </div>
+      
+      <div class="footer">
+    <div class="flex-container">
+        <div class="footer-text">
+            
+            
+                
+        </div>
+    </div>
+</div>
+
+    </div>
+
+    
+    
+
+  </body>
+</html>

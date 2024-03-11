@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="Lee">
+
+
+
+
+
+
+
+<title>Matrix Calculus | Lee</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;700&family=Roboto+Mono&display=swap');
+</style>
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/frame.js"></script>
+    
+
+
+
+
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+
+
+
+
+
+
+  <meta name="generator" content="Hexo 5.4.2"></head>
+  <body>
+    <div class="mask-border">
+    </div>
+
+    <div class="wrapper">
+
+      <div class="header">
+  <div class="flex-container">
+    <div class="header-inner">
+      <div class="site-brand-container">
+        <a href="/">
+          
+            Lee&#39;s Blog
+          
+        </a>
+      </div>
+      <div id="menu-btn" class="menu-btn" onclick="toggleMenu()">
+        Menu
+      </div>
+      <nav class="site-nav">
+        <ul class="menu-list">
+          
+            
+              <li class="menu-item">
+                <a href="/">Home</a>
+              </li> 
+                   
+          
+            
+              <li class="menu-item">
+                <a href="/categories/gallery/">Blog</a>
+              </li> 
+                   
+          
+            
+              <li class="menu-item">
+                <a href="/archives/">Archive</a>
+              </li> 
+                   
+          
+            
+              <li class="menu-item">
+                <a href="/tag/">Tag</a>
+              </li> 
+                   
+          
+            
+              <li class="menu-item">
+                <a href="/about/">About</a>
+              </li> 
+                   
+          
+          
+        </ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main">
+        <div class="flex-container">
+          <article id="post">
+
+  
+    <div class="post-head">
+    <div class="post-info">
+        <div class="tag-list">
+            
+                
+                    <span class="post-tag">
+                        <a href="/tags/Math/">
+                            Math
+                        </a>
+                    </span>    
+                           
+            
+        </div>
+        <div class="post-title">
+            
+            
+                Matrix Calculus
+            
+            
+        </div>
+        <span class="post-date">
+            Nov 13, 2022
+        </span>
+    </div>
+    <div class="post-img">
+        
+            <img src="/./images/14.jpg" alt="featured_image">
+              
+    </div>
+</div>
+    <div class="post-content">
+    <h1><span id="matrix-calculus-ru-men-zhi-nan">Matrix Calculus 入门指南</span><a href="#matrix-calculus-ru-men-zhi-nan" class="header-anchor"></a></h1><div class="toc">
+
+<!-- toc -->
+
+<ul>
+<li><a href="#yi-li-jie-ju-zhen-qiu-dao-ben-zhi-jiu-shi-zheng-li-duo-yuan-han-shu-dui-yu-duo-yuan-bian-liang-de-pian-dao-shu">(一) 理解矩阵求导本质，就是整理多元函数对于多元变量的偏导数</a></li>
+<li><a href="#er-ju-zhen-ceng-mian-de-shu-xue-gong-shi-tui-dao">(二) 矩阵层面的数学公式推导</a></li>
+<li><a href="#san-yong-trace-kuai-su-tui-dao-qiu-dao-gong-shi-wait-to-be-done">(三) 用trace快速推导求导公式(wait to be done)</a></li>
+</ul>
+<!-- tocstop -->
+
+</div>
+
+<h2><span id="yi-li-jie-ju-zhen-qiu-dao-ben-zhi-jiu-shi-zheng-li-duo-yuan-han-shu-dui-yu-duo-yuan-bian-liang-de-pian-dao-shu">(一) 理解矩阵求导本质，就是整理多元函数对于多元变量的偏导数</span><a href="#yi-li-jie-ju-zhen-qiu-dao-ben-zhi-jiu-shi-zheng-li-duo-yuan-han-shu-dui-yu-duo-yuan-bian-liang-de-pian-dao-shu" class="header-anchor"></a></h2><p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/263777564">函数种类和分子分母布局介绍</a></p>
+<ul>
+<li><p>介绍了九种函数的求导方式：当函数结果为（标量、向量、矩阵）,以及输入变元为（标量、向量、矩阵）时，共九种情况自由组合</p>
+</li>
+<li><p>介绍向量化思想，即把矩阵直接拉伸成列向量，可以在向量的基础上求导</p>
+</li>
+<li><p>介绍Matrix求导后 可以写成 Jacobian矩阵和梯度矩阵两种形式，互为转置，数学上的一种定义好的规范罢了。</p>
+<ul>
+<li>具体而言Jacobian矩阵会把向量化后的输入变量转置一次之后再进行求导操作</li>
+<li><img src="./e1-1.png"></li>
+<li><img src="./e1-2.png"></li>
+</ul>
+</li>
+<li><p>介绍分子分母布局的本质</p>
+<ul>
+<li><strong>分子布局的本质</strong>：分子是<strong>标量</strong>、<strong>列向量</strong>、矩阵向量化后的<strong>列向量</strong>；分母是<strong>标量</strong>、列向量<strong>转置</strong>后的<strong>行向量</strong>、矩阵的<strong>转置矩阵</strong>、矩阵向量化后的列向量<strong>转置</strong>后的<strong>行向量</strong>。</li>
+<li><strong>分母布局的本质</strong>：分子是<strong>标量</strong>、列向量<strong>转置</strong>后的<strong>行向量</strong>、矩阵向量化后的列向量<strong>转置</strong>后的<strong>行向量</strong>；分母是<strong>标量</strong>、<strong>列向量</strong>、<strong>矩阵自己</strong>、矩阵向量化后的<strong>列向量</strong>。</li>
+<li>其实分子布局就相当于Jacobian矩阵形式，分母布局就相当于梯度矩阵形式</li>
+</ul>
+</li>
+</ul>
+<h2><span id="er-ju-zhen-ceng-mian-de-shu-xue-gong-shi-tui-dao">(二) 矩阵层面的数学公式推导</span><a href="#er-ju-zhen-ceng-mian-de-shu-xue-gong-shi-tui-dao" class="header-anchor"></a></h2><p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/273729929">矩阵求导公式的数学推导（矩阵求导——基础篇</a></p>
+<p>文章的叙述思路保持一致，当函数结果为（标量、向量、矩阵）,以及输入变元为（标量、向量、矩阵），有不同的公式推导</p>
+<h4><span id="yi-xiang-liang-bian-yuan-de-shi-zhi-biao-liang-han-shu">一. 向量变元的实值标量函数</span><a href="#yi-xiang-liang-bian-yuan-de-shi-zhi-biao-liang-han-shu" class="header-anchor"></a></h4><p>公式中的x请自动默认为列向量，证明可以查看上个超链接。</p>
+<p><img src="./e2-1.png"></p>
+<p><img src="./e2-2.png"></p>
+<p><img src="./e2-3.png"></p>
+<p><img src="./e2-4.png"></p>
+<h4><span id="er-ju-zhen-bian-yuan-de-shi-zhi-biao-liang-han-shu">二. 矩阵变元的实值标量函数</span><a href="#er-ju-zhen-bian-yuan-de-shi-zhi-biao-liang-han-shu" class="header-anchor"></a></h4><p>公式中的X请自动默认为大小为m*n的矩阵，证明可以查看上个超链接。</p>
+<p><img src="./e2-5.png"></p>
+<p><img src="./e2-6.png"></p>
+<p><img src="./e2-7.png"></p>
+<p><img src="./e2-8.png"></p>
+<p>2.4可以通过 2.3加上Jacobian矩阵和梯度矩阵形式互为转置，快速证明。</p>
+<p>Jacobian矩阵和梯度矩阵形式互为转置，可以表示为：</p>
+<p><img src="./e2-9.png"></p>
+<h2><span id="san-yong-trace-kuai-su-tui-dao-qiu-dao-gong-shi-wait-to-be-done">(三) 用trace快速推导求导公式(wait to be done)</span><a href="#san-yong-trace-kuai-su-tui-dao-qiu-dao-gong-shi-wait-to-be-done" class="header-anchor"></a></h2>
+</div> 
+
+<script>
+    window.onload = detectors();
+</script>
+    <div class="post-footer">
+    <div class="h-line-primary"></div>
+    <nav class="post-nav">
+        <div class="prev-item">
+           
+        </div>
+        <div class="next-item">
+            
+                <div class="icon arrow-right"></div>
+                <div class="post-link">
+                  <a href="/2022/10/18/6-Render-UE-RDG/">Next</a>  
+                </div>  
+            
+        </div>
+    </nav>
+</div>
+
+    
+      <div class="post-comment">
+
+     
+
+     
+    
+    
+
+</div>
+     
+  
+</article>
+        </div>
+      </div>
+      
+      <div class="footer">
+    <div class="flex-container">
+        <div class="footer-text">
+            
+            
+                
+        </div>
+    </div>
+</div>
+
+    </div>
+
+    
+    
+
+  </body>
+</html>

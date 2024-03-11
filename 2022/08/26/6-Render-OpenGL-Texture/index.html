@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="Lee">
+
+
+
+
+
+
+
+<title>OpenGL Texture | Lee</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;700&family=Roboto+Mono&display=swap');
+</style>
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/frame.js"></script>
+    
+
+
+
+
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+
+
+
+
+
+
+  <meta name="generator" content="Hexo 5.4.2"></head>
+  <body>
+    <div class="mask-border">
+    </div>
+
+    <div class="wrapper">
+
+      <div class="header">
+  <div class="flex-container">
+    <div class="header-inner">
+      <div class="site-brand-container">
+        <a href="/">
+          
+            Lee&#39;s Blog
+          
+        </a>
+      </div>
+      <div id="menu-btn" class="menu-btn" onclick="toggleMenu()">
+        Menu
+      </div>
+      <nav class="site-nav">
+        <ul class="menu-list">
+          
+            
+              <li class="menu-item">
+                <a href="/">Home</a>
+              </li> 
+                   
+          
+            
+              <li class="menu-item">
+                <a href="/categories/gallery/">Blog</a>
+              </li> 
+                   
+          
+            
+              <li class="menu-item">
+                <a href="/archives/">Archive</a>
+              </li> 
+                   
+          
+            
+              <li class="menu-item">
+                <a href="/tag/">Tag</a>
+              </li> 
+                   
+          
+            
+              <li class="menu-item">
+                <a href="/about/">About</a>
+              </li> 
+                   
+          
+          
+        </ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main">
+        <div class="flex-container">
+          <article id="post">
+
+  
+    <div class="post-head">
+    <div class="post-info">
+        <div class="tag-list">
+            
+                
+                    <span class="post-tag">
+                        <a href="/tags/Render/">
+                            Render
+                        </a>
+                    </span>    
+                
+                    <span class="post-tag">
+                        <a href="/tags/OpenGL/">
+                            OpenGL
+                        </a>
+                    </span>    
+                           
+            
+        </div>
+        <div class="post-title">
+            
+            
+                OpenGL Texture
+            
+            
+        </div>
+        <span class="post-date">
+            Aug 26, 2022
+        </span>
+    </div>
+    <div class="post-img">
+        
+            <img src="/./images/8.jpg" alt="featured_image">
+              
+    </div>
+</div>
+    <div class="post-content">
+    <div class="toc">
+
+<!-- toc -->
+
+<ul>
+<li><a href="#opengl-learning-ji-chu-ru-men-1">OpenGL_learning基础入门(1)</a><ul>
+<li><a href="#wen-li">纹理</a><ul>
+<li><a href="#wen-li-huan-rao-fang-shi">纹理环绕方式</a></li>
+<li><a href="#wen-li-guo-lu">纹理过滤</a></li>
+<li><a href="#duo-ji-jian-yuan-wen-li-mipmap">多级渐远纹理 MipMap</a></li>
+<li><a href="#jia-zai-yu-chuang-jian-wen-li">加载与创建纹理</a></li>
+<li><a href="#wen-li-dan-yuan"><strong>纹理单元</strong></a></li>
+<li><a href="#glm-shu-xue-ku-lai-chu-li-xian-xing-bian-huan"><strong>GLM</strong>数学库来处理线性变换</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#zuo-biao-xi-tong"><strong>坐标系统</strong></a><ul>
+<li><a href="#ru-he-mei-ci-wang-ding-dian-zhao-se-qi-zhong-chuan-ru-bu-tong-de-xuan-zhuan-ju-zhen">如何每次往定点着色器中传入不同的旋转矩阵</a></li>
+<li><a href="#z-buffer">Z-Buffer</a></li>
+</ul>
+</li>
+<li><a href="#she-xiang-ji"><strong>摄像机</strong></a><ul>
+<li><a href="#look-at-ju-zhen"><strong>Look At矩阵</strong></a></li>
+<li><a href="#shi-jiao-yi-dong"><strong>视角移动</strong></a></li>
+<li><a href="#she-xiang-ji-lei"><strong>摄像机类</strong></a></li>
+</ul>
+</li>
+<li><a href="#fu-xi-zhang-jie">复习章节</a></li>
+</ul>
+<!-- tocstop -->
+
+</div>
+
+<h1><span id="opengl-learning-ji-chu-ru-men-1">OpenGL_learning基础入门(1)</span><a href="#opengl-learning-ji-chu-ru-men-1" class="header-anchor"></a></h1><hr>
+<h2><span id="wen-li">纹理</span><a href="#wen-li" class="header-anchor"></a></h2><p>为了能够把纹理映射<code>Map</code>到三角形上，我们需要指定三角形的每个顶点各自对应纹理的哪个部分。这样每个顶点就会关联着一个纹理坐标<code>Texture Coordinate</code>，用来标明该从纹理图像的哪个部分采样<code>译注：采集片段颜色</code>。之后在图形的其它片段上进行片段插值<code>Fragment Interpolation</code>。</p>
+<h3><span id="wen-li-huan-rao-fang-shi">纹理环绕方式</span><a href="#wen-li-huan-rao-fang-shi" class="header-anchor"></a></h3><p><img src="./6.png"></p>
+<h3><span id="wen-li-guo-lu">纹理过滤</span><a href="#wen-li-guo-lu" class="header-anchor"></a></h3><p>纹理坐标不依赖于分辨率<code>Resolution</code>，它可以是任意浮点值，所以OpenGL需要知道怎样将纹理像素<code>Texture Pixel，也叫Texel</code>映射到纹理坐标。当你有一个很大的物体但是纹理的分辨率很低的时候这就变得很重要了。OpenGL也有对于纹理过滤<code>Texture Filtering</code>的选项。纹理过滤有很多个选项，但是现在我们只讨论最重要的两种：<code>GL_NEAREST</code>和<code>GL_LINEAR</code>。</p>
+<p><img src="./7.png"></p>
+<p><img src="./8.png"></p>
+<h3><span id="duo-ji-jian-yuan-wen-li-mipmap">多级渐远纹理 MipMap</span><a href="#duo-ji-jian-yuan-wen-li-mipmap" class="header-anchor"></a></h3><p><img src="./9.png"></p>
+<p><img src="./10.png"></p>
+<h3><span id="jia-zai-yu-chuang-jian-wen-li">加载与创建纹理</span><a href="#jia-zai-yu-chuang-jian-wen-li" class="header-anchor"></a></h3><p>使用<code>stb_image.h</code>库</p>
+<h3><span id="wen-li-dan-yuan"><strong>纹理单元</strong></span><a href="#wen-li-dan-yuan" class="header-anchor"></a></h3><p>你可能会奇怪为什么sampler2D变量是个uniform，我们却不用<code>glUniform</code>给它赋值。使用<code>glUniform1i</code>，我们可以给纹理采样器分配一个位置值，这样的话我们能够在一个片段着色器中设置多个纹理。一个纹理的位置值通常称为一个纹理单元<code>Texture Unit</code>。一个纹理的默认纹理单元是0，它是默认的激活纹理单元，所以教程前面部分我们没有分配一个位置值。</p>
+<p>纹理单元的主要目的是让我们在着色器中可以使用多于一个的纹理。通过把纹理单元赋值给采样器，我们可以一次绑定多个纹理，只要我们首先激活对应的纹理单元。就像<code>glBindTexture</code>一样，我们可以使用<code>glActiveTexture</code>激活纹理单元，传入我们需要使用的纹理单元：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">glActiveTexture</span>(GL_TEXTURE0); <span class="comment">// 在绑定纹理之前先激活纹理单元</span></span><br><span class="line"><span class="built_in">glBindTexture</span>(GL_TEXTURE_2D, texture);</span><br></pre></td></tr></table></figure>
+
+<p><strong>注</strong>：OpenGL至少保证有16个纹理单元供你使用，也就是说你可以激活从GL_TEXTURE0到GL_TEXTRUE15。它们都是按顺序定义的，所以我们也可以通过GL_TEXTURE0 + 8的方式获得GL_TEXTURE8，这在当我们需要循环一些纹理单元的时候会很有用。</p>
+<h3><span id="glm-shu-xue-ku-lai-chu-li-xian-xing-bian-huan"><strong>GLM</strong>数学库来处理线性变换</span><a href="#glm-shu-xue-ku-lai-chu-li-xian-xing-bian-huan" class="header-anchor"></a></h3><p>(教程中重复了GAMES101的线性变换内容，故不再重复)</p>
+<p>可以在定点着色器中声明一个<code>mat4</code>的<code>uniform</code>变量，然后再用矩阵<code>uniform</code>乘以位置向量</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#version 330 core</span></span><br><span class="line"><span class="built_in">layout</span> (location = <span class="number">0</span>) in vec3 aPos;</span><br><span class="line"><span class="built_in">layout</span> (location = <span class="number">1</span>) in vec2 aTexCoord;</span><br><span class="line"></span><br><span class="line">out vec2 TexCoord;</span><br><span class="line"></span><br><span class="line">uniform mat4 transform;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    gl_Position = transform * <span class="built_in">vec4</span>(aPos, <span class="number">1.0f</span>);</span><br><span class="line">    TexCoord = <span class="built_in">vec2</span>(aTexCoord.x, <span class="number">1.0</span> - aTexCoord.y);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h1><span id="zuo-biao-xi-tong"><strong>坐标系统</strong></span><a href="#zuo-biao-xi-tong" class="header-anchor"></a></h1><p>（相当于Games101 MVP矩阵和视口变换的一个总结）</p>
+<p>*局部空间<code>Local Space</code>，或者称为物体空间<code>Object Space</code></p>
+<p>*世界空间<code>World Space</code>:物体经过<code>Model</code>矩阵</p>
+<p>*观察空间<code>View Space</code>，或者称为视觉空间<code>Eye Space</code>:物体经过<code>View</code>矩阵</p>
+<p>*裁剪空间<code>Clip Space</code>:物体经过<code>Projection</code>矩阵</p>
+<p>如果只是图元，例如三角形，的一部分超出了裁剪体积，则OpenGL会重新构建这个三角形为一个或多个三角形让其能够适合这个裁剪范围。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//正交投影（Frustum左，右，底，顶坐标，近平面距离，远平面距离）</span></span><br><span class="line">glm::<span class="built_in">ortho</span>(<span class="number">0.0f</span>, <span class="number">800.0f</span>, <span class="number">0.0f</span>, <span class="number">600.0f</span>, <span class="number">0.1f</span>, <span class="number">100.0f</span>);</span><br><span class="line"><span class="comment">//透视投影（视口，高宽比，近平面距离，远平面距离）</span></span><br><span class="line">glm::mat4 proj = glm::<span class="built_in">perspective</span>(glm::<span class="built_in">radians</span>(<span class="number">45.0f</span>), (<span class="type">float</span>)width/(<span class="type">float</span>)height, <span class="number">0.1f</span>, <span class="number">100.0f</span>);</span><br></pre></td></tr></table></figure>
+
+<p>当你把透视矩阵的 near 值设置太大时（如10.0f），OpenGL会将靠近摄像机的坐标（在0.0f和10.0f之间）都裁剪掉，这会导致一个你在游戏中很熟悉的视觉效果：在太过靠近一个物体的时候你的视线会直接穿过去。</p>
+<p>*屏幕空间<code>Screen Space</code>:经过视口变换</p>
+<p><a target="_blank" rel="noopener" href="https://learnopengl-cn.github.io/01%20Getting%20started/08%20Coordinate%20Systems/">添加空间转换截图</a></p>
+<h3><span id="ru-he-mei-ci-wang-ding-dian-zhao-se-qi-zhong-chuan-ru-bu-tong-de-xuan-zhuan-ju-zhen">如何每次往定点着色器中传入不同的旋转矩阵</span><a href="#ru-he-mei-ci-wang-ding-dian-zhao-se-qi-zhong-chuan-ru-bu-tong-de-xuan-zhuan-ju-zhen" class="header-anchor"></a></h3><p>定点着色器格式</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#version 330 core</span></span><br><span class="line"><span class="built_in">layout</span> (location = <span class="number">0</span>) in vec3 aPos;</span><br><span class="line">...</span><br><span class="line">uniform mat4 model;</span><br><span class="line">uniform mat4 view;</span><br><span class="line">uniform mat4 projection;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">// 注意乘法要从右向左读</span></span><br><span class="line">    gl_Position = projection * view * model * <span class="built_in">vec4</span>(aPos, <span class="number">1.0</span>);</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在渲染循环外还需要把矩阵传入着色器（这通常在每次的渲染迭代中进行，因为变换矩阵会经常变动）。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> modelLoc = <span class="built_in">glGetUniformLocation</span>(ourShader.ID, <span class="string">&quot;model&quot;</span>);</span><br><span class="line"><span class="built_in">glUniformMatrix4fv</span>(modelLoc, <span class="number">1</span>, GL_FALSE, glm::<span class="built_in">value_ptr</span>(model));</span><br></pre></td></tr></table></figure>
+
+<h3><span id="z-buffer">Z-Buffer</span><a href="#z-buffer" class="header-anchor"></a></h3><p>OpenGL存储它的所有深度信息于一个Z缓冲<code>Z-buffer</code>中，也被称为深度缓冲<code>Depth Buffer</code>。GLFW会自动为你生成这样一个缓冲<code>就像它也有一个颜色缓冲来存储输出图像的颜色</code>。深度值存储在每个片段里面<code>作为片段的z值</code>，当片段想要输出它的颜色时，OpenGL会将它的深度值和z缓冲进行比较，如果当前的片段在其它片段之后，它将会被丢弃，否则将会覆盖。这个过程称为深度测试<code>Depth Testing</code>，它是由OpenGL自动完成的。</p>
+<p><strong>深度测试默认是关闭的</strong>。我们可以通过<code>glEnable</code>函数来开启深度测试。glEnable和glDisable函数允许我们启用或禁用某个OpenGL功能。这个功能会一直保持启用/禁用状态，直到另一个调用来禁用/启用它。现在我们想启用深度测试，需要开启GL_DEPTH_TEST：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">glEnable</span>(GL_DEPTH_TEST);</span><br></pre></td></tr></table></figure>
+
+<p>因为我们使用了深度测试，我们也想要在每次渲染迭代之前清除深度缓冲<code>否则前一帧的深度信息仍然保存在缓冲中</code>。就像清除颜色缓冲一样，我们可以通过在glClear函数中指定DEPTH_BUFFER_BIT位来清除深度缓冲：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">glClear</span>(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h1><span id="she-xiang-ji"><strong>摄像机</strong></span><a href="#she-xiang-ji" class="header-anchor"></a></h1><ol>
+<li>摄像机位置</li>
+<li>摄像机方向(z轴)</li>
+</ol>
+<p>方向向量<code>Direction Vector</code>并不是最好的名字，因为它实际上指向从它到目标向量的相反方向。(即从摄像机目标到摄像机位置的向量)</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">glm::vec3 cameraPos = glm::<span class="built_in">vec3</span>(<span class="number">0.0f</span>, <span class="number">0.0f</span>, <span class="number">3.0f</span>);</span><br><span class="line">glm::vec3 cameraTarget = glm::<span class="built_in">vec3</span>(<span class="number">0.0f</span>, <span class="number">0.0f</span>, <span class="number">0.0f</span>);</span><br><span class="line">glm::vec3 cameraDirection = glm::<span class="built_in">normalize</span>(cameraPos - cameraTarget);</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>右轴(Right Vector,x轴):定义上轴(y轴),叉乘得出</li>
+<li>上轴</li>
+</ol>
+<h2><span id="look-at-ju-zhen"><strong>Look At矩阵</strong></span><a href="#look-at-ju-zhen" class="header-anchor"></a></h2><p>使用矩阵的好处之一是如果你使用3个相互垂直（或非线性）的轴定义了一个坐标空间，你可以用这3个轴外加一个平移向量来创建一个矩阵，并且你可以用这个矩阵乘以任何向量来将其变换到那个坐标空间。</p>
+<p>幸运的是，GLM已经提供了这些支持。我们要做的只是定义一个摄像机位置，一个目标位置和一个表示世界空间中的上向量的向量(我们计算右向量使用的那个上向量)。接着GLM就会创建一个LookAt矩阵，我们可以把它当作我们的观察矩阵:</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">glm::mat4 view;</span><br><span class="line">view = glm::<span class="built_in">lookAt</span>(glm::<span class="built_in">vec3</span>(<span class="number">0.0f</span>, <span class="number">0.0f</span>, <span class="number">3.0f</span>), </span><br><span class="line">           glm::<span class="built_in">vec3</span>(<span class="number">0.0f</span>, <span class="number">0.0f</span>, <span class="number">0.0f</span>), </span><br><span class="line">           glm::<span class="built_in">vec3</span>(<span class="number">0.0f</span>, <span class="number">1.0f</span>, <span class="number">0.0f</span>));</span><br></pre></td></tr></table></figure>
+
+<p>可以用键盘在每个渲染循环的开始不断移动摄像机的Pos从而更新View矩阵,键盘的移动只会改变lookat矩阵的位移部分，而不会改变角度的变，即不会改变相机的目标位置。</p>
+<h2><span id="shi-jiao-yi-dong"><strong>视角移动</strong></span><a href="#shi-jiao-yi-dong" class="header-anchor"></a></h2><p>欧拉角系统：俯仰角(Pitch)、偏航角(Yaw)和滚转角(Roll)</p>
+<p>对于我们的摄像机系统来说，我们只关心俯仰角和偏航角，所以我们不会讨论滚转角。</p>
+<p>通过在mian函数中注册一个鼠标移动的回调函数，函数内其实就是利用鼠标在屏幕上的每一帧在x，y轴上面的偏移量，乘上一个sensitivity灵敏度，把位移添加至Pitch、Yaw上。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">float</span> xoffset = xpos - lastX;</span><br><span class="line"><span class="type">float</span> yoffset = lastY - ypos; <span class="comment">// 注意这里是相反的，因为y坐标是从底部往顶部依次增大的</span></span><br><span class="line">lastX = xpos;</span><br><span class="line">lastY = ypos;</span><br><span class="line"></span><br><span class="line"><span class="comment">//鼠标敏感度</span></span><br><span class="line"><span class="type">float</span> sensitivity = <span class="number">0.05f</span>;</span><br><span class="line">xoffset *= sensitivity;</span><br><span class="line">yoffset *= sensitivity;</span><br><span class="line"></span><br><span class="line"><span class="comment">//修改偏航角和俯仰角</span></span><br><span class="line">yaw   += xoffset;</span><br><span class="line">pitch += yoffset;</span><br><span class="line"></span><br><span class="line"><span class="comment">//对于俯仰角，要让用户不能看向高于89度的地方</span></span><br><span class="line"><span class="keyword">if</span>(pitch &gt; <span class="number">89.0f</span>)</span><br><span class="line">  pitch =  <span class="number">89.0f</span>;</span><br><span class="line"><span class="keyword">if</span>(pitch &lt; <span class="number">-89.0f</span>)</span><br><span class="line">  pitch = <span class="number">-89.0f</span>;</span><br></pre></td></tr></table></figure>
+
+<p>同时可以注册鼠标滚轮的回调函数来控制Projection函数中的Fov视域大小。</p>
+<h2><span id="she-xiang-ji-lei"><strong>摄像机类</strong></span><a href="#she-xiang-ji-lei" class="header-anchor"></a></h2><p>代码直接给出来了，可以自己看代码理解细节</p>
+<h1><span id="fu-xi-zhang-jie">复习章节</span><a href="#fu-xi-zhang-jie" class="header-anchor"></a></h1><p><a target="_blank" rel="noopener" href="https://learnopengl-cn.github.io/01%20Getting%20started/10%20Review/">入门章节出现名词复习</a></p>
+
+</div> 
+
+<script>
+    window.onload = detectors();
+</script>
+    <div class="post-footer">
+    <div class="h-line-primary"></div>
+    <nav class="post-nav">
+        <div class="prev-item">
+           
+                <div class="icon arrow-left"></div>
+                <div class="post-link">
+                    <a href="/2022/08/26/6-Render-OpenGL-Color/">Prev</a>
+                </div>
+            
+        </div>
+        <div class="next-item">
+            
+                <div class="icon arrow-right"></div>
+                <div class="post-link">
+                  <a href="/2022/08/26/6-Render-OpenGL-Intro/">Next</a>  
+                </div>  
+            
+        </div>
+    </nav>
+</div>
+
+    
+      <div class="post-comment">
+
+     
+
+     
+    
+    
+
+</div>
+     
+  
+</article>
+        </div>
+      </div>
+      
+      <div class="footer">
+    <div class="flex-container">
+        <div class="footer-text">
+            
+            
+                
+        </div>
+    </div>
+</div>
+
+    </div>
+
+    
+    
+
+  </body>
+</html>

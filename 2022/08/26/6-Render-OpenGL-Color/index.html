@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="Lee">
+
+
+
+
+
+
+
+<title>OpenGL Color | Lee</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;700&family=Roboto+Mono&display=swap');
+</style>
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/frame.js"></script>
+    
+
+
+
+
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+
+
+
+
+
+
+  <meta name="generator" content="Hexo 5.4.2"></head>
+  <body>
+    <div class="mask-border">
+    </div>
+
+    <div class="wrapper">
+
+      <div class="header">
+  <div class="flex-container">
+    <div class="header-inner">
+      <div class="site-brand-container">
+        <a href="/">
+          
+            Lee&#39;s Blog
+          
+        </a>
+      </div>
+      <div id="menu-btn" class="menu-btn" onclick="toggleMenu()">
+        Menu
+      </div>
+      <nav class="site-nav">
+        <ul class="menu-list">
+          
+            
+              <li class="menu-item">
+                <a href="/">Home</a>
+              </li> 
+                   
+          
+            
+              <li class="menu-item">
+                <a href="/categories/gallery/">Blog</a>
+              </li> 
+                   
+          
+            
+              <li class="menu-item">
+                <a href="/archives/">Archive</a>
+              </li> 
+                   
+          
+            
+              <li class="menu-item">
+                <a href="/tag/">Tag</a>
+              </li> 
+                   
+          
+            
+              <li class="menu-item">
+                <a href="/about/">About</a>
+              </li> 
+                   
+          
+          
+        </ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main">
+        <div class="flex-container">
+          <article id="post">
+
+  
+    <div class="post-head">
+    <div class="post-info">
+        <div class="tag-list">
+            
+                
+                    <span class="post-tag">
+                        <a href="/tags/Render/">
+                            Render
+                        </a>
+                    </span>    
+                
+                    <span class="post-tag">
+                        <a href="/tags/OpenGL/">
+                            OpenGL
+                        </a>
+                    </span>    
+                           
+            
+        </div>
+        <div class="post-title">
+            
+            
+                OpenGL Color
+            
+            
+        </div>
+        <span class="post-date">
+            Aug 26, 2022
+        </span>
+    </div>
+    <div class="post-img">
+        
+            <img src="/./images/9.jpg" alt="featured_image">
+              
+    </div>
+</div>
+    <div class="post-content">
+    <div class="toc">
+
+<!-- toc -->
+
+<ul>
+<li><a href="#color">Color</a><ul>
+<li><a href="#shi-xian-yi-ge-jian-dan-de-phone-guang-zhao-mo-xing">实现一个简单的Phone光照模型</a></li>
+<li><a href="#fa-xian-ju-zhen">法线矩阵</a></li>
+<li><a href="#gouraud-shading-he-phone-shading">Gouraud Shading和Phone Shading</a></li>
+</ul>
+</li>
+<li><a href="#materials">Materials</a><ul>
+<li><a href="#guang-de-shu-xing">光的属性</a></li>
+</ul>
+</li>
+<li><a href="#guang-zhao-tie-tu-lighting-maps">光照贴图(Lighting maps)</a><ul>
+<li><a href="#man-fan-she-tie-tu">漫反射贴图</a></li>
+<li><a href="#jing-mian-guang-tie-tu">镜面光贴图</a></li>
+</ul>
+</li>
+<li><a href="#tou-guang-wu">投光物</a><ul>
+<li><a href="#ping-xing-guang">平行光</a></li>
+<li><a href="#dian-guang-yuan">点光源</a></li>
+<li><a href="#guang-xian-shuai-jian-jing-yan-gong-shi">光线衰减经验公式</a></li>
+<li><a href="#ju-guang">聚光</a></li>
+<li><a href="#ju-guang-ping-hua-ruan-hua-bian-yuan">聚光平滑/软化边缘</a></li>
+</ul>
+</li>
+<li><a href="#duo-guang-yuan">多光源</a></li>
+</ul>
+<!-- tocstop -->
+
+</div>
+
+<h1><span id="color">Color</span><a href="#color" class="header-anchor"></a></h1><ul>
+<li>用RGB模拟颜色</li>
+<li>白色(1.0f,1.0f,1.0f)乘上任何颜色(x,y,z)可以得到反射后的颜色,(x,y,z)即是我们看到的物体的颜色 </li>
+</ul>
+<h2><span id="shi-xian-yi-ge-jian-dan-de-phone-guang-zhao-mo-xing">实现一个简单的Phone光照模型</span><a href="#shi-xian-yi-ge-jian-dan-de-phone-guang-zhao-mo-xing" class="header-anchor"></a></h2><h2><span id="fa-xian-ju-zhen">法线矩阵</span><a href="#fa-xian-ju-zhen" class="header-anchor"></a></h2><p>如果模型矩阵执行了不等比缩放，顶点的改变会导致法向量不再垂直于表面了，所以需要法线矩阵来修复法线的方向</p>
+<p>法线矩阵被定义为「模型矩阵左上角3x3部分的逆矩阵的转置矩阵」。</p>
+<p><a target="_blank" rel="noopener" href="http://www.lighthouse3d.com/tutorials/glsl-12-tutorial/the-normal-matrix/">法线矩阵数学推导，不难</a></p>
+<h2><span id="gouraud-shading-he-phone-shading">Gouraud Shading和Phone Shading</span><a href="#gouraud-shading-he-phone-shading" class="header-anchor"></a></h2><p>在光照着色器的早期，开发者曾经在顶点着色器中实现冯氏光照模型。在顶点着色器中做光照的优势是，相比片段来说，顶点要少得多，因此会更高效，所以（开销大的）光照计算频率会更低。然而，顶点着色器中的最终颜色值是仅仅只是那个顶点的颜色值，片段的颜色值是由插值光照颜色所得来的。结果就是这种光照看起来不会非常真实，除非使用了大量顶点。</p>
+<p>在顶点着色器中实现的冯氏光照模型叫做Gouraud着色(Gouraud Shading)，而不是冯氏着色(Phong Shading)。记住，由于插值，这种光照看起来有点逊色。冯氏着色能产生更平滑的光照效果。</p>
+<p><a target="_blank" rel="noopener" href="https://dawnarc.com/2018/06/shadingflatgouraudphong-shading%E7%9A%84%E5%B7%AE%E5%88%A5/">不同shading方法的区别</a></p>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/411933220">不同shading方法的区别</a><br>说明Phong Shading是在模型每个像素上都去计算的</p>
+<h1><span id="materials">Materials</span><a href="#materials" class="header-anchor"></a></h1><p>用结构体表示材质</p>
+<p>如你所见，我们为冯氏光照模型的每个分量都定义一个颜色向量。ambient材质向量定义了在环境光照下这个表面反射的是什么颜色，通常与表面的颜色相同。diffuse材质向量定义了在漫反射光照下表面的颜色。漫反射颜色（和环境光照一样）也被设置为我们期望的物体颜色。specular材质向量设置的是表面上镜面高光的颜色（或者甚至可能反映一个特定表面的颜色）。最后，shininess影响镜面高光的散射/半径。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#version 330 core</span></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">Material</span> &#123;</span><br><span class="line">    vec3 ambient;</span><br><span class="line">    vec3 diffuse;</span><br><span class="line">    vec3 specular;</span><br><span class="line">    <span class="type">float</span> shininess;</span><br><span class="line">&#125;; </span><br><span class="line"></span><br><span class="line">uniform Material material;</span><br></pre></td></tr></table></figure>
+
+<h2><span id="guang-de-shu-xing">光的属性</span><a href="#guang-de-shu-xing" class="header-anchor"></a></h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> <span class="title class_">Light</span> &#123;</span><br><span class="line">    vec3 position;</span><br><span class="line"></span><br><span class="line">    vec3 ambient;</span><br><span class="line">    vec3 diffuse;</span><br><span class="line">    vec3 specular;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">uniform Light light;</span><br></pre></td></tr></table></figure>
+
+<p>一个光源对它的ambient、diffuse和specular光照分量有着不同的强度。环境光照通常被设置为一个比较低的强度，因为我们不希望环境光颜色太过主导。光源的漫反射分量通常被设置为我们希望光所具有的那个颜色，通常是一个比较明亮的白色。镜面光分量通常会保持为vec3(1.0)，以最大强度发光。注意我们也将光源的位置向量加入了结构体。</p>
+<h1><span id="guang-zhao-tie-tu-lighting-maps">光照贴图(Lighting maps)</span><a href="#guang-zhao-tie-tu-lighting-maps" class="header-anchor"></a></h1><h2><span id="man-fan-she-tie-tu">漫反射贴图</span><a href="#man-fan-she-tie-tu" class="header-anchor"></a></h2><p>这可能听起来很熟悉，而且事实上这个系统我们已经使用很长时间了。这听起来很像在之前教程中详细讨论过的<code>纹理</code>，而这基本就是这样：一个纹理。我们仅仅是对同样的原理使用了不同的名字：其实都是使用一张覆盖物体的图像，让我们能够逐片段索引其独立的颜色值。在光照场景中，它通常叫做一个<code>漫反射贴图(Diffuse Map)</code>（3D艺术家通常都这么叫它），它是一个表现了物体所有的漫反射颜色的纹理图像。</p>
+<p>在着色器中使用漫反射贴图的方法和纹理教程中是完全一样的。但这次我们会将纹理储存为Material结构体中的一个<code>sampler2D</code>。我们将之前定义的vec3漫反射颜色向量替换为漫反射贴图。</p>
+<p>注意:<code>sampler2D</code>是所谓的不透明类型(Opaque Type)，也就是说我们不能将它实例化，只能通过<code>uniform</code>来定义它。如果我们使用除uniform以外的方法（比如函数的参数）实例化这个结构体，GLSL会抛出一些奇怪的错误。这同样也适用于任何封装了不透明类型的结构体。</p>
+<h2><span id="jing-mian-guang-tie-tu">镜面光贴图</span><a href="#jing-mian-guang-tie-tu" class="header-anchor"></a></h2><p>镜面高光的强度可以通过图像每个像素的亮度来获取。镜面光贴图上的每个像素都可以由一个颜色向量来表示，比如说黑色代表颜色向量<code>vec3(0.0)</code>，灰色代表颜色向量<code>vec3(0.5)</code>。在片段着色器中，我们接下来会取样对应的颜色值并将它乘以光源的镜面强度。一个像素越「白」，乘积就会越大，物体的镜面光分量就会越亮。</p>
+<p>思考：通过贴图，实际上在代码中还是使用的一个材料结构体，但可以通过采样器得到不同材质的性质。确定，</p>
+<h1><span id="tou-guang-wu">投光物</span><a href="#tou-guang-wu" class="header-anchor"></a></h1><h2><span id="ping-xing-guang">平行光</span><a href="#ping-xing-guang" class="header-anchor"></a></h2><p>当我们使用一个假设光源处于无限远处的模型时，它就被称为定向光，因为它的所有光线都有着相同的方向，它与光源的位置是没有关系的。</p>
+<p>当光定义为vec4的时候，如果<code>light.w=0.0</code>这时候光可能是一个平行光，若<code>light.w=1.0</code>这时候的光向量会当成在描述光源的位置。</p>
+<h2><span id="dian-guang-yuan">点光源</span><a href="#dian-guang-yuan" class="header-anchor"></a></h2><p>点光源是处于世界中某一个位置的光源，它会朝着所有方向发光，但光线会随着距离逐渐衰减。</p>
+<h2><span id="guang-xian-shuai-jian-jing-yan-gong-shi">光线衰减经验公式</span><a href="#guang-xian-shuai-jian-jing-yan-gong-shi" class="header-anchor"></a></h2><p><img src="./1.png"></p>
+<h2><span id="ju-guang">聚光</span><a href="#ju-guang" class="header-anchor"></a></h2><p>手电筒/路灯</p>
+<p><img src="./2.png"></p>
+<p>硬分解线的聚光，通过判断Theta是否比切光交小，来决定该fraction是否执行光照计算。</p>
+<h2><span id="ju-guang-ping-hua-ruan-hua-bian-yuan">聚光平滑/软化边缘</span><a href="#ju-guang-ping-hua-ruan-hua-bian-yuan" class="header-anchor"></a></h2><p><img src="./3.png"></p>
+<h1><span id="duo-guang-yuan">多光源</span><a href="#duo-guang-yuan" class="header-anchor"></a></h1><p><img src="./4.png"></p>
+<p>思路是在fragment Shader定义三种不同的光的结构体，然后分别把三种光的shading方式写成类似的<code>vec3 CalcPointLight</code>，把不同光照的结果相加。比较麻烦的地方是，在渲染循环中每次需要手动设置所有光源的参数。</p>
+<hr>
+<p>复习<code>Uniform</code>详见入门-着色器</p>
+<p><code>Uniform</code>是一种从CPU中的应用向GPU中的着色器发送数据的方式，但uniform和顶点属性有些不同。首先，uniform是全局的(Global)。全局意味着uniform变量必须在每个着色器程序对象中都是独一无二的，而且它可以被着色器程序的任意着色器在任意阶段访问。第二，无论你把uniform值设置成什么，uniform会一直保存它们的数据，直到它们被重置或更新。</p>
+<hr>
+
+</div> 
+
+<script>
+    window.onload = detectors();
+</script>
+    <div class="post-footer">
+    <div class="h-line-primary"></div>
+    <nav class="post-nav">
+        <div class="prev-item">
+           
+                <div class="icon arrow-left"></div>
+                <div class="post-link">
+                    <a href="/2022/09/01/9-Novel-the-Rebel/">Prev</a>
+                </div>
+            
+        </div>
+        <div class="next-item">
+            
+                <div class="icon arrow-right"></div>
+                <div class="post-link">
+                  <a href="/2022/08/26/6-Render-OpenGL-Texture/">Next</a>  
+                </div>  
+            
+        </div>
+    </nav>
+</div>
+
+    
+      <div class="post-comment">
+
+     
+
+     
+    
+    
+
+</div>
+     
+  
+</article>
+        </div>
+      </div>
+      
+      <div class="footer">
+    <div class="flex-container">
+        <div class="footer-text">
+            
+            
+                
+        </div>
+    </div>
+</div>
+
+    </div>
+
+    
+    
+
+  </body>
+</html>

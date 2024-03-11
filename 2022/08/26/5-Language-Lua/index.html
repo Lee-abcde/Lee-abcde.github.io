@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="Lee">
+
+
+
+
+
+
+
+<title>Lua | Lee</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;700&family=Roboto+Mono&display=swap');
+</style>
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/frame.js"></script>
+    
+
+
+
+
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+
+
+
+
+
+
+  <meta name="generator" content="Hexo 5.4.2"></head>
+  <body>
+    <div class="mask-border">
+    </div>
+
+    <div class="wrapper">
+
+      <div class="header">
+  <div class="flex-container">
+    <div class="header-inner">
+      <div class="site-brand-container">
+        <a href="/">
+          
+            Lee&#39;s Blog
+          
+        </a>
+      </div>
+      <div id="menu-btn" class="menu-btn" onclick="toggleMenu()">
+        Menu
+      </div>
+      <nav class="site-nav">
+        <ul class="menu-list">
+          
+            
+              <li class="menu-item">
+                <a href="/">Home</a>
+              </li> 
+                   
+          
+            
+              <li class="menu-item">
+                <a href="/categories/gallery/">Blog</a>
+              </li> 
+                   
+          
+            
+              <li class="menu-item">
+                <a href="/archives/">Archive</a>
+              </li> 
+                   
+          
+            
+              <li class="menu-item">
+                <a href="/tag/">Tag</a>
+              </li> 
+                   
+          
+            
+              <li class="menu-item">
+                <a href="/about/">About</a>
+              </li> 
+                   
+          
+          
+        </ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main">
+        <div class="flex-container">
+          <article id="post">
+
+  
+    <div class="post-head">
+    <div class="post-info">
+        <div class="tag-list">
+            
+                
+                    <span class="post-tag">
+                        <a href="/tags/Programming-Language/">
+                            Programming Language
+                        </a>
+                    </span>    
+                           
+            
+        </div>
+        <div class="post-title">
+            
+            
+                Lua
+            
+            
+        </div>
+        <span class="post-date">
+            Aug 26, 2022
+        </span>
+    </div>
+    <div class="post-img">
+        
+            <img src="/./images/3.jpg" alt="featured_image">
+              
+    </div>
+</div>
+    <div class="post-content">
+    <div class="toc">
+
+<!-- toc -->
+
+<ul>
+<li><a href="#chapter-1-intro"><strong>chapter 1:Intro</strong></a></li>
+<li><a href="#chapter-3-numbers"><strong>chapter 3：Numbers</strong></a></li>
+<li><a href="#chapter-4-strings"><strong>Chapter 4. Strings</strong></a></li>
+<li><a href="#chapter-5-tables"><strong>Chapter 5. Tables</strong></a></li>
+<li><a href="#chapter-6-functions"><strong>Chapter 6. Functions</strong></a></li>
+<li><a href="#chapter-7-ku-han-shu"><strong>Chapter 7. 库函数</strong></a></li>
+<li><a href="#chapter-8-filling-some-gaps"><strong>Chapter 8. Filling some Gaps</strong></a></li>
+<li><a href="#chapter-17-modules-and-packages"><strong>Chapter 17. Modules and Packages</strong></a></li>
+<li><a href="#chapter-21-object-oriented-programming"><strong>Chapter 21. Object-Oriented Programming</strong></a></li>
+</ul>
+<!-- tocstop -->
+
+</div>
+
+<h1><span id="chapter-1-intro"><strong>chapter 1:Intro</strong></span><a href="#chapter-1-intro" class="header-anchor"></a></h1><p>交互模式中可以用dofile(“xxx.lua”)在中途加载函数</p>
+<p><em><strong>comment</strong></em></p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- short comment</span></span><br><span class="line"></span><br><span class="line"><span class="comment">--[[A multi-line</span></span><br><span class="line"><span class="comment">    long comment</span></span><br><span class="line"><span class="comment">]]</span></span><br></pre></td></tr></table></figure>
+
+<p>优秀的函数注释</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">--[[</span><br><span class="line">CMinimap:UpdateSceneName = </span><br><span class="line">&#123;</span><br><span class="line">    Desc = &quot;更新场景名称&quot;,</span><br><span class="line">    Args =</span><br><span class="line">    &#123;</span><br><span class="line">    	&#123;bSceneAllowPK = &quot;该场景是否允许PK&quot;&#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">--]]</span><br></pre></td></tr></table></figure>
+
+<p><em><strong>Basic type</strong> nil, Boolean, number, string, userdata, function, thread, and table</em></p>
+<h1><span id="chapter-3-numbers"><strong>chapter 3：Numbers</strong></span><a href="#chapter-3-numbers" class="header-anchor"></a></h1><p>5.3版本lua加入整数表示</p>
+<p>lua不区分浮点数和整数的数值，普通除法<code>/</code>,整数除法<code>//</code>。但可以用<code>math.type(x)</code>区别数字的类型。</p>
+<p>用0x来表示十六进制，在16进制中，p代表2，可以在数字后缀加p2,p3,p-1来表示乘上2的几次方</p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">0x1</span>p<span class="number">-1</span>==<span class="number">0.5</span></span><br></pre></td></tr></table></figure>
+
+<p>不等于<code>~=</code></p>
+<hr>
+<p><strong>数学库使用：</strong></p>
+<p><code>huge</code>最大数字,<code>deg``rad</code>角度制幅度制转换</p>
+<p><code>math.random</code>和<code>math.randomseed(os.time())</code></p>
+<p>Rounding functions:<code>floor</code>(向-inf取整), <code>ceil</code>(向inf取整), and <code>modf</code>(向0取整) (大整数情况下<code>floor</code>会失效)</p>
+<p>转成浮点数<code>x+0.0</code>，转成整数需要调用Rounding fuctions</p>
+<h1><span id="chapter-4-strings"><strong>Chapter 4. Strings</strong></span><a href="#chapter-4-strings" class="header-anchor"></a></h1><hr>
+<p>实用技巧如何把循环变量拼入类属性，<code>self[&quot;m_slot&quot;..tostring(i)]</code></p>
+<hr>
+<p><code>String</code>在lua中是不可变的量，所以不支持在<code>String</code>上面修改单个字符。</p>
+<p><code>String</code>,<code>Table</code>,<code>Fuction</code>会自动管理内存，不需要手动释放</p>
+<p><code>#+String</code>自动返回该<code>String</code>的长度</p>
+<p><code>tonumber</code>和<code>tostring</code></p>
+<hr>
+<p><strong>String库使用：</strong></p>
+<p>string初始需要默认为1,可以使用-1标识最后一个字符<br><code>utf8</code>有个自己的库</p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">string</span>.<span class="built_in">len</span>(s)</span><br><span class="line"><span class="built_in">string</span>.<span class="built_in">rep</span>(s,  n)</span><br><span class="line"><span class="built_in">string</span>.<span class="built_in">reverse</span></span><br><span class="line"><span class="built_in">string</span>.<span class="built_in">lower</span>(s)</span><br><span class="line"><span class="built_in">string</span>.<span class="built_in">upper</span>(s)</span><br><span class="line"></span><br><span class="line"><span class="built_in">string</span>.<span class="built_in">sub</span>(s, i, j)<span class="comment">-- (The first character of a </span></span><br><span class="line"><span class="built_in">string</span>.<span class="built_in">char</span>==utf8.<span class="built_in">char</span> <span class="comment">--给一个数字，返回对应的编码字符</span></span><br><span class="line"><span class="built_in">string</span>.<span class="built_in">byte</span>(s, i)==utf8.codepoint<span class="comment">--returns the internal numeric representation of the i-th character of the string s</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt; <span class="built_in">string</span>.<span class="built_in">format</span>(<span class="string">&quot;x = %d  y = %d&quot;</span>, <span class="number">10</span>, <span class="number">20</span>)   <span class="comment">--&gt; x = 10  y = 20</span></span><br><span class="line">&gt; <span class="built_in">string</span>.<span class="built_in">find</span>(<span class="string">&quot;hello world&quot;</span>, <span class="string">&quot;wor&quot;</span>)   <span class="comment">--&gt; 7   9</span></span><br><span class="line">&gt; <span class="built_in">string</span>.<span class="built_in">gsub</span>(<span class="string">&quot;hello world&quot;</span>, <span class="string">&quot;l&quot;</span>, <span class="string">&quot;.&quot;</span>)     <span class="comment">--&gt; he..o wor.d    3</span></span><br></pre></td></tr></table></figure>
+
+<h1><span id="chapter-5-tables"><strong>Chapter 5. Tables</strong></span><a href="#chapter-5-tables" class="header-anchor"></a></h1><p><code>Table</code>的名字是其背后表的一个引用，There is no fixed relationship between a variable that holds a table and the table itself。 Lua中对于<code>=</code>符号，拷贝对象是<code>Table</code>的时候表示浅拷贝，拷贝对象的类型是<code>string</code>、<code>number</code>、<code>boolean</code> 这些基本类型的时候会使用深拷贝。</p>
+<p>可以通过给某个<code>key</code>的table值赋值nil从而删掉这个mapping</p>
+<p>在<code>key</code>中认为2和2.0是一个东西</p>
+<p><code>record-style</code>和<code>list-style initializations</code></p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">polyline = &#123;color=<span class="string">&quot;blue&quot;</span>,</span><br><span class="line">            thickness=<span class="number">2</span>,</span><br><span class="line">            npoints=<span class="number">4</span>,</span><br><span class="line">            &#123;x=<span class="number">0</span>,   y=<span class="number">0</span>&#125;,    <span class="comment">-- polyline[1]</span></span><br><span class="line">            &#123;x=<span class="number">-10</span>, y=<span class="number">0</span>&#125;,    <span class="comment">-- polyline[2]</span></span><br><span class="line">            &#123;x=<span class="number">-10</span>, y=<span class="number">1</span>&#125;,    <span class="comment">-- polyline[3]</span></span><br><span class="line">            &#123;x=<span class="number">0</span>,   y=<span class="number">1</span>&#125;     <span class="comment">-- polyline[4]</span></span><br><span class="line">            &#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">a=&#123;&#125;</span><br><span class="line"><span class="keyword">for</span> i=<span class="number">1</span>,<span class="number">10</span> <span class="keyword">do</span></span><br><span class="line">    a[i]=i</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"><span class="keyword">for</span> i=<span class="number">1</span>,#a <span class="keyword">do</span></span><br><span class="line">    <span class="built_in">print</span>(a[i])</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="comment">-- 使用pairs遍历每次遍历的顺序不一定，可以使用ipairs保持一定顺序</span></span><br><span class="line">t = &#123;<span class="number">10</span>, <span class="built_in">print</span>, x = <span class="number">12</span>, k = <span class="string">&quot;hi&quot;</span>&#125;</span><br><span class="line"><span class="keyword">for</span> k, v <span class="keyword">in</span> <span class="built_in">pairs</span>(t) <span class="keyword">do</span></span><br><span class="line">  <span class="built_in">print</span>(k, v)</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+
+<p>安全查询<code>zip = company?.director?.address?.zipcode</code></p>
+<p><strong><code>#</code>在Table中统计数量，通常是放回数组中从1开始到n都是有数值的个数，不代表Table中有多少个键值对。目前除了遍历之外，没见到太好的有统计Table内参数个数的情况</strong></p>
+<p><strong>Table库的使用</strong></p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">table</span>.<span class="built_in">insert</span>(t,<span class="number">1</span>,<span class="number">15</span>)</span><br><span class="line"><span class="built_in">table</span>.<span class="built_in">remove</span><span class="comment">--指定数字删除/直接删除最后一个元素</span></span><br><span class="line"><span class="built_in">table</span>.move(a, f, e, t)</span><br></pre></td></tr></table></figure>
+
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/hp_cpp/article/details/104711548">table.move操作详细解析</a></p>
+<p><code>a or b</code>——如果a 为true，则返回a，否则返回b (当n等于<code>nil</code>或者<code>false</code>的时候n被初始化a.)</p>
+<p><code>a and b</code>——如果a 为false，则返回a，否则返回b</p>
+<h1><span id="chapter-6-functions"><strong>Chapter 6. Functions</strong></span><a href="#chapter-6-functions" class="header-anchor"></a></h1><p>函数可以返回多个结果,但是如果该结果要赋值给单个变量/参与表达式运算的时候，通常只保留第一个数字进行运算。</p>
+<p>函数可以有任意个输入用<code>...</code>代替即可</p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">add</span> <span class="params">(...)</span></span></span><br><span class="line">    <span class="keyword">local</span> s = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> _, v <span class="keyword">in</span> <span class="built_in">ipairs</span>&#123;...&#125; <span class="keyword">do</span></span><br><span class="line">            s = s + v</span><br><span class="line">        <span class="keyword">end</span></span><br><span class="line">    <span class="keyword">return</span> s</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(add(<span class="number">3</span>, <span class="number">4</span>, <span class="number">10</span>, <span class="number">25</span>, <span class="number">12</span>))    <span class="comment">--&gt; 54</span></span><br></pre></td></tr></table></figure>
+
+<p><code>table.pack</code>:把所有输入的参数打包成一个新的Table，这样就可以保证输入的参数形成一个可以遍历的数据结构。pack后的返回值，有一个多余的参数n表示Table的大小。</p>
+<p><code>select</code>函数，选择从序号x开始之后的所有参数,# 返回参数个数</p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(<span class="built_in">select</span>(<span class="number">2</span>, <span class="string">&quot;a&quot;</span>, <span class="string">&quot;b&quot;</span>, <span class="string">&quot;c&quot;</span>))       <span class="comment">--&gt; b    c</span></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">select</span>(<span class="string">&quot;#&quot;</span>, <span class="string">&quot;a&quot;</span>, <span class="string">&quot;b&quot;</span>, <span class="string">&quot;c&quot;</span>))     <span class="comment">--&gt; 3</span></span><br></pre></td></tr></table></figure>
+
+<p><code>table.unpack</code>: It takes a list and returns as results all elements from the list</p>
+<h1><span id="chapter-7-ku-han-shu"><strong>Chapter 7. 库函数</strong></span><a href="#chapter-7-ku-han-shu" class="header-anchor"></a></h1><p><strong>IO库</strong></p>
+<p><code>io.read()</code>和<code>io.write()</code></p>
+<table>
+<thead>
+<tr>
+<th>read()填入参数</th>
+<th>效果</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>“a”</td>
+<td>reads the whole file</td>
+</tr>
+<tr>
+<td>“l”</td>
+<td>reads the next line (dropping the newline)</td>
+</tr>
+<tr>
+<td>“L”</td>
+<td>reads the next line (keeping the newline)</td>
+</tr>
+<tr>
+<td>“n”</td>
+<td>reads a number</td>
+</tr>
+<tr>
+<td>num</td>
+<td>reads num characters as a string</td>
+</tr>
+</tbody></table>
+<p><code>io.open</code></p>
+<p><strong>OS库</strong></p>
+<p>The function <em><strong>os.execute</strong></em> runs a system command;</p>
+<h1><span id="chapter-8-filling-some-gaps"><strong>Chapter 8. Filling some Gaps</strong></span><a href="#chapter-8-filling-some-gaps" class="header-anchor"></a></h1><p><strong>Local Variables and Blocks</strong></p>
+<p>局部变量的有效局限在<code>block</code>内，可以使用<code>do</code>和<code>end</code>有效的指定<code>block</code>内。</p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">local</span> x1, x2</span><br><span class="line"><span class="keyword">do</span></span><br><span class="line"><span class="keyword">local</span> a2 = <span class="number">2</span>*a</span><br><span class="line"><span class="keyword">local</span> d = (b^<span class="number">2</span> - <span class="number">4</span>*a*c)^(<span class="number">1</span>/<span class="number">2</span>)</span><br><span class="line">x1 = (-b + d)/a2</span><br><span class="line">x2 = (-b - d)/a2</span><br><span class="line"><span class="keyword">end</span>             <span class="comment">-- scope of &#x27;a2&#x27; and &#x27;d&#x27; ends here</span></span><br><span class="line"><span class="built_in">print</span>(x1, x2)   <span class="comment">-- &#x27;x1&#x27; and &#x27;x2&#x27; still in scope</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>循环/选择结构</strong></p>
+<p><strong>In particular, Lua treats both zero and the empty string as true.</strong></p>
+<p><code>elseif</code></p>
+<p>通过例子看下基本控制结构</p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">local</span> i = <span class="number">1</span></span><br><span class="line">    <span class="keyword">while</span> a[i] <span class="keyword">do</span></span><br><span class="line">        <span class="built_in">print</span>(a[i])</span><br><span class="line">        i = i + <span class="number">1</span></span><br><span class="line">    <span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+
+<p><code>repeat–until</code>等价于c语言的<code>do-while</code>结构</p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- print the first non-empty input line</span></span><br><span class="line"><span class="keyword">local</span> line</span><br><span class="line">    <span class="keyword">repeat</span></span><br><span class="line">        line = <span class="built_in">io</span>.<span class="built_in">read</span>()</span><br><span class="line">    <span class="keyword">until</span> line ~= <span class="string">&quot;&quot;</span></span><br><span class="line"><span class="built_in">print</span>(line)</span><br></pre></td></tr></table></figure>
+
+<p><code>for</code>循环</p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 从[exp1,exp2],以exp3的步长来遍历</span></span><br><span class="line"><span class="keyword">for</span> var = exp1, exp2, exp3 <span class="keyword">do</span></span><br><span class="line">    something</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+
+<h1><span id="chapter-17-modules-and-packages"><strong>Chapter 17. Modules and Packages</strong></span><a href="#chapter-17-modules-and-packages" class="header-anchor"></a></h1><p>Modules类似于一个封装库,可以用lua自己写Modules，然后用<code>require</code>函数导入该Module</p>
+<h1><span id="chapter-21-object-oriented-programming"><strong>Chapter 21. Object-Oriented Programming</strong></span><a href="#chapter-21-object-oriented-programming" class="header-anchor"></a></h1><p>面向对象标准写法</p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">--定义</span></span><br><span class="line">Account = &#123;balance = <span class="number">0</span>&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Account.withdraw</span> <span class="params">(self, v)</span></span></span><br><span class="line">    <span class="built_in">self</span>.balance = <span class="built_in">self</span>.balance - v</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">a1=Account</span><br><span class="line">a1.withdraw(a1,<span class="number">100</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">--可以借用写好的函数定义到新类上</span></span><br><span class="line">a2 = &#123;balance=<span class="number">0</span>, withdraw = Account.withdraw&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">--省去self，可以使用冒号定义函数</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Account:withdraw</span> <span class="params">(v)</span></span></span><br><span class="line">    <span class="built_in">self</span>.balance = <span class="built_in">self</span>.balance - v</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"><span class="comment">--其他定义方法</span></span><br><span class="line">Account = &#123; balance=<span class="number">0</span>,</span><br><span class="line">            withdraw = <span class="function"><span class="keyword">function</span> <span class="params">(self, v)</span></span></span><br><span class="line">                        <span class="built_in">self</span>.balance = <span class="built_in">self</span>.balance - v</span><br><span class="line">                        <span class="keyword">end</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+</div> 
+
+<script>
+    window.onload = detectors();
+</script>
+    <div class="post-footer">
+    <div class="h-line-primary"></div>
+    <nav class="post-nav">
+        <div class="prev-item">
+           
+                <div class="icon arrow-left"></div>
+                <div class="post-link">
+                    <a href="/2022/08/26/7-Game-UE/">Prev</a>
+                </div>
+            
+        </div>
+        <div class="next-item">
+            
+                <div class="icon arrow-right"></div>
+                <div class="post-link">
+                  <a href="/2022/08/25/2-Simulation-PBD/">Next</a>  
+                </div>  
+            
+        </div>
+    </nav>
+</div>
+
+    
+      <div class="post-comment">
+
+     
+
+     
+    
+    
+
+</div>
+     
+  
+</article>
+        </div>
+      </div>
+      
+      <div class="footer">
+    <div class="flex-container">
+        <div class="footer-text">
+            
+            
+                
+        </div>
+    </div>
+</div>
+
+    </div>
+
+    
+    
+
+  </body>
+</html>
