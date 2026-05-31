@@ -2,6 +2,21 @@
   - firstname: ["Jingyuan"]
     url: /
 
+  - firstname: ["Peizhuo"]
+    url: https://peizhuoli.github.io/
+
+"li*":
+  - firstname: ["Jingyuan"]
+    url: /
+
+"aristidou":
+  - firstname: ["Andreas"]
+    url: https://andreasaristidou.com/
+
+"sorkine-hornung":
+  - firstname: ["Olga"]
+    url: https://igl.ethz.ch/people/sorkine/
+
 "adams":
   - firstname: ["Edwin", "E.", "E. P.", "Edwin Plimpton"]
     url: https://en.wikipedia.org/wiki/Edwin_Plimpton_Adams
