@@ -5,6 +5,38 @@
 @use "variables" as v;
 @use "sass:color";
 
+@font-face {
+  font-family: "Linux Biolinum";
+  src: url("../fonts/linux-biolinum/LinBiolinum.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Linux Biolinum";
+  src: url("../fonts/linux-biolinum/LinBiolinumB.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Linux Biolinum";
+  src: url("../fonts/linux-biolinum/LinBiolinumI.woff2") format("woff2");
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+body,
+.navbar,
+.post,
+.publications,
+.profile {
+  font-family: "Linux Biolinum", system-ui, sans-serif;
+}
+
 :root {
   color-scheme: light;
 
