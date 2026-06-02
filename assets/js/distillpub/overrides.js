@@ -1,4 +1,4 @@
-$(window).on("load", function () {
+window.addEventListener("load", function () {
   document.querySelectorAll("d-footnote").forEach(function (footnote) {
     footnote.shadowRoot.querySelector("sup > span").setAttribute("style", "color: var(--global-theme-color);");
     footnote.shadowRoot
