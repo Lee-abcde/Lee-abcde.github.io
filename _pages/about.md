@@ -26,6 +26,20 @@ latest_posts:
   limit: 3 # leave blank to include all the blog posts
 ---
 
+<style>
+  .publications ol.bibliography li .author a {
+    border-bottom: 0;
+    text-decoration: none;
+  }
+
+  .publications ol.bibliography li .author a[href="https://lee-abcde.github.io/"] {
+    border-bottom: 1px solid var(--global-theme-color);
+    color: var(--global-theme-color);
+    font-weight: 700;
+    text-decoration: none;
+  }
+</style>
+
 My name is Jingyuan Li (李靖远). I am currently a Master's student in Computer Science at ETH Zürich, specializing in Visual and Interactive Computing, where I work under the supervision of [Prof. Siyu Tang](https://vlg.inf.ethz.ch/team/Prof-Dr-Siyu-Tang.html) and [Prof. Olga Sorkine-Hornung](https://igl.ethz.ch/people/sorkine/).
 
 My research interests include embodied intelligence, character animation, and motion generation. Before joining ETH, I obtained my BSc in Computer Science from Harbin Institute of Technology, Shenzhen.
