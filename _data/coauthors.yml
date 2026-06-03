@@ -1,13 +1,9 @@
 "li":
   - firstname: ["Jingyuan"]
-    url: /
+    url: https://lee-abcde.github.io/
 
   - firstname: ["Peizhuo"]
     url: https://peizhuoli.github.io/
-
-"li*":
-  - firstname: ["Jingyuan"]
-    url: /
 
 "aristidou":
   - firstname: ["Andreas"]

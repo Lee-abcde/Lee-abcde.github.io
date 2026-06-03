@@ -13,6 +13,20 @@ nav_order: 2
 
 {% include bib_search.liquid %}
 
+<style>
+  .publications ol.bibliography li .author a {
+    border-bottom: 0;
+    text-decoration: none;
+  }
+
+  .publications ol.bibliography li .author a[href="https://lee-abcde.github.io/"] {
+    border-bottom: 1px solid var(--global-theme-color);
+    color: var(--global-theme-color);
+    font-weight: 700;
+    text-decoration: none;
+  }
+</style>
+
 <div class="publications">
 
 {% bibliography %}

@@ -340,8 +340,9 @@ display_categories: ["external-services"] # these categories will be displayed o
 # -----------------------------------------------------------------------------
 
 scholar:
-  last_name: [Einstein]
-  first_name: [Albert, A.]
+  # Keep empty so the "li" entry in _data/coauthors.yml renders the site owner as a normal author link.
+  last_name: []
+  first_name: []
 
   style: apa
   locale: en
